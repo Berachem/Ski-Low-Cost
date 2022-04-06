@@ -41,7 +41,7 @@ include('includes/header.inc.html')
 
                                     <?php
 
-                                        if (isset($GET['success']) && $GET['success']==1){
+                                        if (isset($GET['messagesent']) && $GET['messagesent']==1){
                                             echo '
                                             <div class="d-none" id="submitSuccessMessage">
                                             <div class="text-center mb-3">
@@ -54,7 +54,7 @@ include('includes/header.inc.html')
                                 
                                         }
 
-?>
+                                    ?>
 
                                     <!-- Submit error message-->
                                     <!---->
