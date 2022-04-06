@@ -1,6 +1,7 @@
 <?php
 
-include('includes/header.inc.html')
+include('includes/header.inc.html');
+include('php/connexion.inc.php');
 
 ?>
                         <section class="py-5" id="features">
@@ -60,7 +61,62 @@ include('includes/header.inc.html')
                 </div>
             </section>
 
-             <!-- Contact form-->
+
+             <!-- List-->
+             <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+                <div class="text-center mb-5">
+                    <div class="feature bg-info bg-gradient text-white rounded-3 mb-3"><i class="bi bi-person-lines-fill"></i></div>
+                    <h1 class="fw-bolder">Liste des clients</h1>
+                    <p class="lead fw-normal text-muted mb-0"></p>
+                </div>
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-8 col-xl-6">
+                            <table id="employee_grid" class="table" width="100%" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                    <th>Code client</th>
+                                    <th>Nom</th>
+                                    <th>Prénom</th>
+                                    <th>Date de naissance</th>
+                                    <th>Adresse</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                        <?php
+
+                        $results=$conn->query('SELECT * FROM clients');
+
+                            
+                        // Exécution de la requête SQL
+                        while( $ligne = $results->fetch(PDO::FETCH_OBJ) ) {
+                        print_r($ligne);
+                        echo '
+
+                            <tr>
+                            <td>'. $ligne->codec .'</td>
+                            <td>'. $ligne->nomc .'</td>
+                            <td>'. $ligne->prenomc .'</td>
+                            <td>'. $ligne->date_de_naissancec .'</td>
+                            <td>'. $ligne->adressec .'</td>
+
+
+                            <td><div class="btn-group" data-toggle="buttons"><a href="#" target="_blank" class="btn btn-warning btn-xs" rel="noopener">Edit</a><a href="#" target="_blank" class="btn btn-danger btn-xs" rel="noopener">Delete</a><a href="#" target="_blank" class="btn btn-primary btn-xs" rel="noopener">View</a></div></td>
+                            </tr>
+                            ';
+                        }
+                   
+
+                        
+                        ?>
+                        </tbody>
+                        </table>
+                        
+                    </div>
+                </div>
+            </div>
+
+    
+             <!-- Kick form-->
              <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
                 <div class="text-center mb-5">
                     <div class="feature bg-danger bg-gradient text-white rounded-3 mb-3"><i class="bi bi-door-open-fill"></i></div>
