@@ -10,7 +10,7 @@ $pass =  'Bouzened93';
 
 try {
     $conn = new PDO('pgsql:host=sqletud.u-pem.fr;dbname=berachem.markria_db', $user, $pass); 
-    $conn = $conn->exec("set SEARCH_PATH TO projet");
+    $conn->exec("set SEARCH_PATH TO projet");
     
 }
 catch (PDOException $e) {

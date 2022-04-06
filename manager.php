@@ -127,6 +127,22 @@ include('php/connexion.inc.php');
                     </div>
                 </div>
             </div>
+            
+
+
+            if (isset($GET['success']) && 
+            $GET['success']==1){
+                echo '
+                <div class="d-none" id="submitSuccessMessage">
+                <div class="text-center mb-3">
+                    <div class="alert alert-success" role="alert">
+                        C est envoyé... Merci :)
+                    </div>
+                </div>
+            </div>
+                ';
+                                
+                            }
 
     
              <!-- Kick form-->
