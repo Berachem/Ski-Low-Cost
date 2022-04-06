@@ -58,13 +58,12 @@ include('includes/header.inc.html')
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-10 col-xl-7">
                             <div class="text-center">
-                                <div class="fs-4 mb-4 fst-italic">"Working with Start Bootstrap templates has saved me tons of development time when building new projects! Starting with a Bootstrap template just makes things easier!"</div>
+                                <div class="fs-4 mb-4 fst-italic">"Meilleur séjour de ski en famille de toute ma vie!"</div>
                                 <div class="d-flex align-items-center justify-content-center">
-                                    <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
+                                    <img class="rounded-circle me-3" src="assets/ThomasPesquet.jpg" alt="..." width="80"/>
                                     <div class="fw-bold">
-                                        Tom Ato
-                                        <span class="fw-bold text-primary mx-1">/</span>
-                                        CEO, Pomodoro
+                                        Thomas Pesquet
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -78,92 +77,57 @@ include('includes/header.inc.html')
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-8 col-xl-6">
                             <div class="text-center">
-                                <h2 class="fw-bolder">From our blog</h2>
-                                <p class="lead fw-normal text-muted mb-5">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque fugit ratione dicta mollitia. Officiis ad.</p>
+                                <h2 class="fw-bolder">Nos chambres disponibles</h2>
+                                <p class="lead fw-normal text-muted mb-5">Des chambres pouvant accueillir de 2 à 6 personnes.</p>
                             </div>
                         </div>
                     </div>
                     <div class="row gx-5">
                         <div class="col-lg-4 mb-5">
                             <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />
+                                <img class="card-img-top" src="assets/Chambre2personnes.png" alt="..." width="600" height="350"/>
                                 <div class="card-body p-4">
-                                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
-                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">Blog post title</h5></a>
-                                    <p class="card-text mb-0">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                                    <div class="d-flex align-items-end justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
-                                            <div class="small">
-                                                <div class="fw-bold">Kelly Rowan</div>
-                                                <div class="text-muted">March 12, 2021 &middot; 6 min read</div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">2 personnes</div>
+                                    <a class="text-decoration-none link-dark stretched-link" href="reserver.php"><h5 class="card-title mb-3">Venez en couple</h5></a>
+                                    <p class="card-text mb-0">Venez à 2 ou en couple séjourner : </p>
+                                    <ul>
+                                        <li>2 lits simples</li>
+                                        <li>1 lit double</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-4 mb-5">
                             <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="https://dummyimage.com/600x350/adb5bd/495057" alt="..." />
+                                <img class="card-img-top" src="assets/4personnes.png" alt="..." width="600" height="350"/>
                                 <div class="card-body p-4">
-                                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">Media</div>
-                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">Another blog post title</h5></a>
-                                    <p class="card-text mb-0">This text is a bit longer to illustrate the adaptive height of each card. Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                                    <div class="d-flex align-items-end justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
-                                            <div class="small">
-                                                <div class="fw-bold">Josiah Barclay</div>
-                                                <div class="text-muted">March 23, 2021 &middot; 4 min read</div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">4 personnes</div>
+                                    <a class="text-decoration-none link-dark stretched-link" href="reserver.php"><h5 class="card-title mb-3">Venez en famille</h5></a>
+                                    <p class="card-text mb-0">Venez en famille ou entre amis, Choisissez la chambre qui vous convient :</p>
+                                    <ul>
+                                        <li>4 lits simples</li>
+                                        <li>1 lits Double, 2 lits simples</li>
+                                        <li>2 lits Double</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-4 mb-5">
                             <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="https://dummyimage.com/600x350/6c757d/343a40" alt="..." />
+                                <img class="card-img-top" src="assets/6personnes.png" alt="..." width="600" height="350"/>
                                 <div class="card-body p-4">
-                                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
-                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">The last blog post title is a little bit longer than the others</h5></a>
-                                    <p class="card-text mb-0">Some more quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                                    <div class="d-flex align-items-end justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
-                                            <div class="small">
-                                                <div class="fw-bold">Evelyn Martinez</div>
-                                                <div class="text-muted">April 2, 2021 &middot; 10 min read</div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">6 personnes</div>
+                                    <a class="text-decoration-none link-dark stretched-link" href="reserver.php"><h5 class="card-title mb-3">Venez en groupe</h5></a>
+                                    <p class="card-text mb-0">Restez en groupe même la nuit :</p>
+                                    <ul>
+                                        <li>6 lits simples</li>
+                                        <li>2 lits double, 2 lits simple</li>
+                                        <li>1 lit double, 4 lits simple</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Call to action-->
-                    <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
-                        <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
-                            <div class="mb-4 mb-xl-0">
-                                <div class="fs-3 fw-bold text-white">New products, delivered to you.</div>
-                                <div class="text-white-50">Sign up for our newsletter for the latest updates.</div>
-                            </div>
-                            <div class="ms-xl-4">
-                                <div class="input-group mb-2">
-                                    <input class="form-control" type="text" placeholder="Email address..." aria-label="Email address..." aria-describedby="button-newsletter" />
-                                    <button class="btn btn-outline-light" id="button-newsletter" type="button">Sign up</button>
-                                </div>
-                                <div class="small text-white-50">We care about privacy, and will never share your data.</div>
-                            </div>
-                        </div>
-                    </aside>
                 </div>
             </section>
         </main>
