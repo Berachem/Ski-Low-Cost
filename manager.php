@@ -79,17 +79,23 @@ include('php/connexion.inc.php');
                                     <th>Prénom</th>
                                     <th>Date de naissance</th>
                                     <th>Adresse</th>
+                                    <th>Téléphone</th>
+                                    <th>Niveau Ski</th>
+                                    <th>Taille</th>
+                                    <th>Poids</th>
+                                    <th>Pointure</th>
+                                    <th>Réduction</th>
+                                    <th>Numéro Groupe</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                         <?php
 
-                        $results=$conn->query('SELECT * FROM clients');
+                        $results=$conn->query("SELECT * FROM clients");
 
                             
                         // Exécution de la requête SQL
                         while( $ligne = $results->fetch(PDO::FETCH_OBJ) ) {
-                        print_r($ligne);
                         echo '
 
                             <tr>
@@ -98,9 +104,16 @@ include('php/connexion.inc.php');
                             <td>'. $ligne->prenomc .'</td>
                             <td>'. $ligne->date_de_naissancec .'</td>
                             <td>'. $ligne->adressec .'</td>
+                            <td>'. $ligne->telephonec .'</td>
+                            <td>'. $ligne->niveau_skic .'</td>
+                            <td>'. $ligne->taillec .'</td>
+                            <td>'. $ligne->poidsc .'</td>
+                            <td>'. $ligne->pointurec .'</td>
+                            <td>'. $ligne->nomr .'</td>
+                            <td>'. $ligne->numg .'</td>
 
 
-                            <td><div class="btn-group" data-toggle="buttons"><a href="#" target="_blank" class="btn btn-warning btn-xs" rel="noopener">Edit</a><a href="#" target="_blank" class="btn btn-danger btn-xs" rel="noopener">Delete</a><a href="#" target="_blank" class="btn btn-primary btn-xs" rel="noopener">View</a></div></td>
+                            <td><div class="btn-group" data-toggle="buttons"><a href="#" target="_blank" class="btn btn-warning btn-xs" rel="noopener">Modifier</a></div></td>
                             </tr>
                             ';
                         }
@@ -125,18 +138,27 @@ include('php/connexion.inc.php');
                 </div>
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-8 col-xl-6">
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- * * SB Forms Contact Form * *-->
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- This form is pre-integrated with SB Forms.-->
-                        <!-- To make this form functional, sign up at-->
-                        <!-- https://startbootstrap.com/solution/contact-forms-->
-                        <!-- to get an API token!-->
                         <form id="contactForm" method="POST" action="book.php">
                             <!-- Name input-->
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                <label for="name">Code client</label>
+                                <select class="form-control">
+                                    <option >Sélectionner un client</option>
+                                <?php
+
+                                    $results=$conn->query("SELECT * FROM clients");
+
+                                                                
+                                    // Exécution de la requête SQL
+                                    while( $ligne = $results->fetch(PDO::FETCH_OBJ) ) {
+                                    echo '
+
+                                        <option value="'.$ligne->codec.'">'.$ligne->prenomc.' (code :'.$ligne->codec.')</option>
+
+                                        ';
+                                    }
+
+                                ?>
+                                </select>
                             </div>
                             <div class="form-floating mb-3">
                                 <textarea class="form-control" name="" id="" cols="30" rows="15" style="height: 100px;"></textarea>
