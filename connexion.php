@@ -16,21 +16,15 @@ include('includes/header.inc.html')
                         </div>
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">
-                                <!-- * * * * * * * * * * * * * * *-->
-                                <!-- * * SB Forms Contact Form * *-->
-                                <!-- * * * * * * * * * * * * * * *-->
-                                <!-- This form is pre-integrated with SB Forms.-->
-                                <!-- To make this form functional, sign up at-->
-                                <!-- https://startbootstrap.com/solution/contact-forms-->
-                                <!-- to get an API token!-->
+
                                 <form id="contactForm" method="POST" action="php/clientconnect.php">
                                     <!-- Name input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="name" for='id' type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                                        <input class="form-control" id="name" name='id' type="text" placeholder="Enter your name..." data-sb-validations="required" />
                                         <label for="id">Identifiant</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="name" for='psw' type="password" placeholder="Enter your name..." data-sb-validations="required" />
+                                        <input class="form-control" id="name" name="psw" type="password" placeholder="Enter your name..." data-sb-validations="required" />
                                         <label for="psw">Mot de passe</label>
     
                                     </div>
