@@ -13,22 +13,95 @@ include('php/connexion.inc.php');
                                 <div class="col mb-5 h-100">
                                     <div class="feature bg-info bg-gradient text-white rounded-3 mb-3"><i class="bi bi-currency-euro"></i></div>
                                     <h2 class="h5">Chiffre d'affaires</h2>
-                                    <p class="mb-0">17 570 005 €</p>
+                                    <p class="mb-0">
+                                        
+                                    <?php
+
+                                        $chiffreAffaire=$conn->query("SELECT SUM(montantfacture) AS s FROM facture_groupe");                         
+                                        // Exécution de la requête SQL
+                                        while( $ligne = $chiffreAffaire->fetch(PDO::FETCH_OBJ) ) {
+                                            echo $ligne->s;
+                                            echo ' €';
+                                        }
+
+                                    ?>
+
+
+
+                                    </p>
+
+
                                 </div>
                                 <div class="col mb-5 h-100">
                                     <div class="feature bg-success bg-gradient text-white rounded-3 mb-3"><i class="bi bi-door-open"></i></div>
                                     <h2 class="h5">Nombre de chambres disponibles</h2>
-                                    <p class="mb-0">25 chambres</p>
+                                    <p class="mb-0">
+                                    <?php
+
+                                            $requete=$conn->query("SELECT DISTINCT numChambre 
+                                            FROM occupe
+                                            NATURAL JOIN reservations
+                                            WHERE CURRENT_DATE BETWEEN reservations.date_debutr AND reservations.date_finr");    
+                                            $data = $requete->fetch();
+                                            $data = array_unique($data);
+
+                                            $requete2=$conn->query("SELECT COUNT(*) total FROM chambre");
+                                            $nbChambreTotal = $requete2->fetch();
+
+                                            echo $nbChambreTotal[0] - sizeof($data);
+
+
+                                        
+
+                                    ?>
+                                        
+                                    
+                                    chambres</p>
                                 </div>
                                 <div class="col mb-5 mb-md-0 h-100">
                                     <div class="feature bg-danger bg-gradient text-white rounded-3 mb-3"><i class="bi bi-x-octagon-fill"></i></div>
                                     <h2 class="h5">Nombre de chambres occupées</h2>
-                                    <p class="mb-0">112 chambres</p>
+                                    <p class="mb-0">
+
+                                    <?php
+
+                                        $requete=$conn->query("SELECT DISTINCT numChambre 
+                                        FROM occupe
+                                        NATURAL JOIN reservations
+                                        WHERE CURRENT_DATE BETWEEN reservations.date_debutr AND reservations.date_finr");    
+                                        
+                                        $data = $requete->fetch();
+
+                                        $data = array_unique($data);
+                                        // Exécution de la requête SQL
+
+                                        echo sizeof($data);
+                                        echo ' chambre(s) (';
+                                        echo implode(",", array_values($data));
+                                        echo ')';
+
+                                    ?>
+                                        
+                                    </p>
                                 </div>
                                 <div class="col h-100">
                                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-people-fill"></i></div>
                                     <h2 class="h5">Nombre de clients dans l'hôtel</h2>
-                                    <p class="mb-0">432 personnes</p>
+                                    <p class="mb-0">
+                                    <?php
+
+                                        $cpt=$conn->query("SELECT COUNT(*) AS total FROM occupe");                         
+                                        // Exécution de la requête SQL
+                                        while( $ligne = $cpt->fetch(PDO::FETCH_OBJ) ) {
+                                            echo $ligne->total;
+                                        }
+
+                                        ?>
+                                    personnes
+
+
+
+                                    </p>
                                 </div>
                             </div>
                         </div>
