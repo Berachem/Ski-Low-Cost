@@ -28,7 +28,7 @@ include('includes/header.inc.html')
                         <div class="col-lg-8">
                             <div class="row gx-5 row-cols-1 row-cols-md-2">
                                 <div class="col mb-5 h-100">
-                                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-snow2"></i></div>
+                                    <div class="feature bg-info bg-gradient text-white rounded-3 mb-3"><i class="bi bi-snow2"></i></div>
                                     <h2 class="h5">Formule Tout compris</h2>
                                     <p class="mb-0">Venez skiez avec la formule Tout compris qui vous offre la location de ski.</p>
                                 </div>
@@ -38,12 +38,12 @@ include('includes/header.inc.html')
                                     <p class="mb-0">Des prix adaptés en fonctions de vos préférences de séjour.</p>
                                 </div>
                                 <div class="col mb-5 mb-md-0 h-100">
-                                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-image-alt"></i></div>
+                                    <div class="feature bg-success bg-gradient text-white rounded-3 mb-3"><i class="bi bi-image-alt"></i></div>
                                     <h2 class="h5">Une vue inoubliable</h2>
                                     <p class="mb-0">Choisissez la vue de fenêtre pour un séjour unique!</p>
                                 </div>
                                 <div class="col h-100">
-                                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-people-fill"></i></div>
+                                    <div class="feature bg-secondary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-people-fill"></i></div>
                                     <h2 class="h5">Formez un groupe </h2>
                                     <p class="mb-0">Organisez un voyage avec votre famille ou vos amis.</p>
                                 </div>

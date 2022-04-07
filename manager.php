@@ -11,17 +11,17 @@ include('php/connexion.inc.php');
                         <div class="col-lg-8">
                             <div class="row gx-5 row-cols-1 row-cols-md-2">
                                 <div class="col mb-5 h-100">
-                                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-currency-euro"></i></div>
+                                    <div class="feature bg-info bg-gradient text-white rounded-3 mb-3"><i class="bi bi-currency-euro"></i></div>
                                     <h2 class="h5">Chiffre d'affaires</h2>
                                     <p class="mb-0">17 570 005 €</p>
                                 </div>
                                 <div class="col mb-5 h-100">
-                                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-door-open"></i></div>
+                                    <div class="feature bg-success bg-gradient text-white rounded-3 mb-3"><i class="bi bi-door-open"></i></div>
                                     <h2 class="h5">Nombre de chambres disponibles</h2>
                                     <p class="mb-0">25 chambres</p>
                                 </div>
                                 <div class="col mb-5 mb-md-0 h-100">
-                                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-x-octagon-fill"></i></div>
+                                    <div class="feature bg-danger bg-gradient text-white rounded-3 mb-3"><i class="bi bi-x-octagon-fill"></i></div>
                                     <h2 class="h5">Nombre de chambres occupées</h2>
                                     <p class="mb-0">112 chambres</p>
                                 </div>
@@ -127,24 +127,8 @@ include('php/connexion.inc.php');
                     </div>
                 </div>
             </div>
-            
+        
 
-
-            if (isset($GET['success']) && 
-            $GET['success']==1){
-                echo '
-                <div class="d-none" id="submitSuccessMessage">
-                <div class="text-center mb-3">
-                    <div class="alert alert-success" role="alert">
-                        C est envoyé... Merci :)
-                    </div>
-                </div>
-            </div>
-                ';
-                                
-                            }
-
-    
              <!-- Kick form-->
              <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
                 <div class="text-center mb-5">
@@ -176,12 +160,7 @@ include('php/connexion.inc.php');
                                 ?>
                                 </select>
                             </div>
-                            <div class="form-floating mb-3">
-                                <textarea class="form-control" name="" id="" cols="30" rows="15" style="height: 100px;"></textarea>
-                                <label for="name">motif de l'expulsion</label>
-                            </div>
-                            
-                            
+                    
                             <!-- Submit success message-->
                             <!---->
                             <!-- This is what your users will see when the form-->
@@ -194,11 +173,6 @@ include('php/connexion.inc.php');
                                     <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
                                 </div>
                             </div>
-                            <!-- Submit error message-->
-                            <!---->
-                            <!-- This is what your users will see when there is-->
-                            <!-- an error submitting the form-->
-                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                             <!-- Submit Button-->
                             <div class="d-grid"><button class="btn btn-danger btn-lg" id="submitButton" type="submit">Expulser</button></div>
                         </form>
