@@ -37,11 +37,11 @@ include('includes/header.inc.html')
                                 <form id="Form" method="POST" action="php/clientconnect.php">
                                     <!-- Name input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="name" name='id' type="text" placeholder="Enter your name..."/>
+                                        <input class="form-control" id="name" name='id' type="text" placeholder="Enter your name..." data-sb-validations="required" />
                                         <label for="id">Identifiant</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="name" name="psw" type="password" placeholder="Enter your name..." />
+                                        <input class="form-control" id="name" name="psw" type="password" placeholder="Enter your name..." data-sb-validations="required" />
                                         <label for="psw">Mot de passe</label>
     
                                     </div>

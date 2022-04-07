@@ -1,16 +1,25 @@
 <?php
 include('connexion.inc.php');
 
+session_start();
+
+
+
 
 if (isset($_POST['id']) && isset($_POST['psw'])){
+    $_SESSION["id"] = $_POST['id'];
+    $_SESSION["psw"] = $_POST['psw'];
+
     // si c'est un admin
-    if ($_POST['id']==1 && $_POST['psw']=='admin'){
-        header('Location: manager.php&id='.$POST['id'].'&psw='.$POST['psw']);
+    if ($_SESSION['id']=='admin' && $_SESSION['psw']=='admin'){
+        header('Location: ../manager.php');
+    }else{
+        // sinon si c'est un client...
+        header('Location: ../myaccount.php');
     }
     
 
-    // sinon si c'est un client...
-    header('Location: myaccount.php&id='.$POST['id'].'&psw='.$POST['psw']);
+
 
     // sinon (erreur)...
     //header('Location: connexion.php&error=1'); 
