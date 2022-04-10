@@ -12,7 +12,7 @@ include('includes/header.inc.html')
                                 <p class="lead fw-normal text-white-50 mb-4">Des tarifs très abordables, des locations de skis à bas prix et surtout des moments inoubliables ! :)</p>
                                 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
                                     <a class="btn btn-primary btn-lg px-4 me-sm-3" href="myaccount.php">Réserver</a>
-                                    <a class="btn btn-outline-light btn-lg px-4" href="myaccount.php">Organiser un voyage de groupe</a>
+                                    <a class="btn btn-outline-light btn-lg px-4" href="group.php">Organiser un voyage de groupe</a>
                                 </div>
                             </div>
                         </div>
