@@ -2,13 +2,16 @@
 
 include('includes/header.inc.html');
 include('php/connexion.inc.php');
+session_start();
 
 if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
 
     // si c'est un admin
     if ($_SESSION['id']!='admin' && $_SESSION['psw']!='admin'){
-        header('Location: index.php'); // ce n'est pas un admin, il dégage
+        header('Location: myaccount.php'); // ce n'est pas un admin, il dégage
     }
+}else{
+    header('Location: connexion.php');
 }
 ?>
                         <section class="py-5" id="features">
@@ -140,7 +143,13 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                             </div>
                         </div>
                     </div>
+                    <form action="php/clientdisconnect.php" method="POST">
+                    <button type="submit" class="btn btn-danger">Se déconnecter</button>
+                </form>
                 </div>
+
+
+
             </section>
 
 
@@ -210,6 +219,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                         
                     </div>
                 </div>
+                
             </div>
         
 
@@ -225,7 +235,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                         <form id="contactForm" method="POST" action="book.php">
                             <!-- Name input-->
                             <div class="form-floating mb-3">
-                                <select class="form-control">
+                                <select class="form-control" name="banned">
                                     <option >Sélectionner un client</option>
                                 <?php
 

@@ -5,6 +5,7 @@ include('includes/header.inc.html')
 <?php
 session_start();
 
+
 if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
 
     // si c'est un admin
@@ -15,6 +16,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
         echo 'Salut vous êtes le client : '.$_SESSION['id'].' et le psw='.$_SESSION['psw'];
     }
 
+}else{// pas encore connecté
+    header('Location: connexion.php');
 }
 
 ?>
@@ -57,7 +60,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                             </div>
                             <div class="col mb-5 mb-md-0 h-100">
                                 <div class="feature bg-danger bg-gradient text-white rounded-3 mb-3"><i class="bi bi-calendar"></i></div>
-                                <h2 class="h5">date de votre séjour</h2>
+                                <h2 class="h5">Date de votre séjour</h2>
                                 <p class="mb-0">
 
                                 <?php
@@ -69,7 +72,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                             </div>
                             <div class="col h-100">
                                 <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-star"></i></div>
-                                <h2 class="h5">formule tout compris</h2>
+                                <h2 class="h5">Formule</h2>
                                 <p class="mb-0">
                                 <?php
 
@@ -82,9 +85,15 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
 
                                 </p>
                             </div>
+                            
                         </div>
+
                     </div>
                 </div>
+                <form action="php/clientdisconnect.php" method="POST">
+                    <button type="submit" class="btn btn-danger">Se déconnecter</button>
+                </form>
+                
             </div>
         </section>
 

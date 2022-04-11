@@ -1,21 +1,21 @@
 <?php
 
+
 session_start();
 if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
     // si c'est un admin
     if ($_SESSION['id']=='admin' && $_SESSION['psw']=='admin'){
         header('Location: ../manager.php');
-    }else{
-        // sinon si c'est un client...
-        header('Location: ../reserver.php');
     }
+    
 }
 else{
     // si personne ne s'est connecté
     header('Location: ../connexion.php');
 }
 
-include('includes/header.inc.html')
+include('includes/header.inc.html');
+include('php/connexion.inc.php');
 
 ?>
             <!-- Page content-->
@@ -37,85 +37,88 @@ include('includes/header.inc.html')
                                 <!-- To make this form functional, sign up at-->
                                 <!-- https://startbootstrap.com/solution/contact-forms-->
                                 <!-- to get an API token!-->
-                                <form id="contactForm" method="POST" action="book.php">
+                                <form action="book.php" method="POST">
                                     <!-- Name input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                                        <input class="form-control" name="nom" type="text" required/>
                                         <label for="name">Nom</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                                        <input class="form-control" name="prenom" type="text" required/>
                                         <label for="name">Prénom</label>
     
                                     </div>
                                     
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="name" type="date" placeholder="Enter your name..." data-sb-validations="required" />
+                                        <input class="form-control" name="date" type="date" required/>
                                         <label for="name">Date de Naissance</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                                        <input class="form-control" name="adresse" type="text" required/>
                                         <label for="name">Adresse</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="name" type="tel" placeholder="Enter your name..." data-sb-validations="required" />
+                                        <input class="form-control" name="tel" type="tel" required/>
                                         <label for="name">Téléphone</label>
     
                                     </div>
+                                <div>
                                     <label for="name">Choisissez la formule souhaitée :</label> <br>
-                                      <input type="radio" id="html" name="fav_language" value="HTML">
+                                      <input type="radio" id="html" name="tout_compris" value="tout_compris" checked>
                                       <label for="html">Tout compris à 510 euros</label><br>
-                                      <input type="radio" id="css" name="fav_language" value="CSS">
+                                      <input type="radio" id="css" name="non_skieur" value="non_skieur">
                                       <label for="css">Non Skieur à 420 euros</label><br>
                                     <br>
                                     <h1 class="fw-bolder">Location de ski</h1>
-            
+                                </div>
+                                <div>
                                     <label for="name">Sélectionnez votre niveau en ski :</label> <br>
-                                      <input type="radio" id="html" name="fav_language" value="HTML">
+                                      <input type="radio" id="html" name="debutant" value="debutant" checked>
                                       <label for="html">débutant</label><br>
-                                      <input type="radio" id="css" name="fav_language" value="CSS">
+                                      <input type="radio" id="css" name="moyen" value="moyen">
                                       <label for="css">moyen</label><br>
-                                      <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+                                      <input type="radio" id="javascript" name="fav_language" value="confirmé">
                                       <label for="javascript">confirmé</label>
+                                </div>
+
+                                
                                     <br>
                                     <br>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                                        <input class="form-control" name="taille" type="text" required/>
                                         <label for="name">Taille</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                                        <input class="form-control" name="poids" type="text"  required/>
                                         <label for="name">Poids</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                                        <input class="form-control" name="pointure" type="text"  required/>
                                         <label for="name">Pointure</label>
                                     </div>
-                                    <div class="form-floating mb-3">
-                                        <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                        <label for="name" style="color: orange;">Code de Groupe</label>
-                                    </div>
 
-                                    
-                                    <!-- Submit success message-->
-                                    <!---->
-                                    <!-- This is what your users will see when the form-->
-                                    <!-- has successfully submitted-->
-                                    <div class="d-none" id="submitSuccessMessage">
-                                        <div class="text-center mb-3">
-                                            <div class="fw-bolder">Form submission successful!</div>
-                                            To activate this form, sign up at
-                                            <br />
-                                            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                        </div>
+                                    <div class="form-floating mb-3">
+                                    <select class="form-control" name="groupe" required>
+                                            <option value="">Choisir un groupe</option>
+                                            <?php
+
+                                                $results=$conn->query("SELECT numg FROM groupe_clients");
+
+
+                                                // Exécution de la requête SQL
+                                                while( $ligne = $results->fetch(PDO::FETCH_OBJ) ) {
+                                                echo '
+
+                                                    <option value="'.$ligne->numg.'"> Groupe '.$ligne->numg.'</option> ';
+                                                    echo $ligne->numg;
+                                                }
+
+                                            ?>
+                                    </select>         
                                     </div>
-                                    <!-- Submit error message-->
-                                    <!---->
-                                    <!-- This is what your users will see when there is-->
-                                    <!-- an error submitting the form-->
-                                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                                     <!-- Submit Button-->
-                                    <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Réserver</button></div>
+                                    <div class="d-grid"><button class="btn btn-primary btn-lg" type="submit">Réserver</button></div>
+                                   
                                 </form>
                             </div>
                         </div>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
+if (isset($_SESSION['id']) && isset($_SESSION['psw'])){ // s'il est déjà connecté, pas besoin de le reconnecter... On le redirige
     // si c'est un admin
     if ($_SESSION['id']=='admin' && $_SESSION['psw']=='admin'){
         header('Location: ../manager.php');

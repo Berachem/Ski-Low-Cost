@@ -3,9 +3,6 @@ include('connexion.inc.php');
 
 session_start();
 
-
-
-
 if (isset($_POST['id']) && isset($_POST['psw'])){
     $_SESSION["id"] = $_POST['id'];
     $_SESSION["psw"] = $_POST['psw'];
