@@ -45,17 +45,19 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                                     <p class="mb-0">
                                     <?php
 
-                                            $requete=$conn->query("SELECT DISTINCT numChambre 
+                                            $requete=$conn->query("SELECT numchambre FROM chambre WHERE numchambre NOT IN (SELECT DISTINCT occupe.numchambre 
                                             FROM occupe
                                             NATURAL JOIN reservations
-                                            WHERE CURRENT_DATE BETWEEN reservations.date_debutr AND reservations.date_finr");    
+                                            WHERE CURRENT_DATE BETWEEN reservations.date_debutr AND reservations.date_finr)");    
                                             $data = $requete->fetch();
+                                            
                                             $data = array_unique($data);
+                                            // Exécution de la requête SQL
 
-                                            $requete2=$conn->query("SELECT COUNT(*) total FROM chambre");
-                                            $nbChambreTotal = $requete2->fetch();
-
-                                            echo $nbChambreTotal[0] - sizeof($data);
+                                            echo sizeof($data);
+                                            echo ' chambre(s) (';
+                                            echo implode(",", array_values($data));
+                                            echo ')';
 
 
                                         
@@ -63,7 +65,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                                     ?>
                                         
                                     
-                                    chambres</p>
+                                    </p>
                                 </div>
                                 <div class="col mb-5 mb-md-0 h-100">
                                     <div class="feature bg-danger bg-gradient text-white rounded-3 mb-3"><i class="bi bi-x-octagon-fill"></i></div>
@@ -160,6 +162,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                                     <th>Date de naissance</th>
                                     <th>Adresse</th>
                                     <th>Téléphone</th>
+                                    <th>Formule</th>
                                     <th>Niveau Ski</th>
                                     <th>Taille</th>
                                     <th>Poids</th>
@@ -185,6 +188,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                             <td>'. $ligne->date_de_naissancec .'</td>
                             <td>'. $ligne->adressec .'</td>
                             <td>'. $ligne->telephonec .'</td>
+                            <td>'. $ligne->formulec .'</td>
                             <td>'. $ligne->niveau_skic .'</td>
                             <td>'. $ligne->taillec .'</td>
                             <td>'. $ligne->poidsc .'</td>
