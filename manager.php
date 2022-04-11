@@ -3,6 +3,13 @@
 include('includes/header.inc.html');
 include('php/connexion.inc.php');
 
+if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
+
+    // si c'est un admin
+    if ($_SESSION['id']!='admin' && $_SESSION['psw']!='admin'){
+        header('Location: index.php'); // ce n'est pas un admin, il dégage
+    }
+}
 ?>
                     <section class="py-5" id="features">
             <div class="container px-5 my-5">

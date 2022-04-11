@@ -5,9 +5,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
     // si c'est un admin
     if ($_SESSION['id']=='admin' && $_SESSION['psw']=='admin'){
         header('Location: ../manager.php');
-    }else{
-        // sinon si c'est un client...
-        header('Location: ../reserver.php');
     }
 }
 else{
