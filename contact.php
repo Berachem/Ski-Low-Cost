@@ -33,7 +33,7 @@ include('includes/header.inc.html')
 
                                     ?>
 
-                                <form id="contactForm" action="../php/sendmessage.php" method="POST">
+                                <form id="contactForm" action="/php/sendmessage.php" method="POST">
                                     <!-- Name input-->
                                     <div class="form-floating mb-3">
                                         <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
