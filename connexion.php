@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+
+
 if (isset($_SESSION['id']) && isset($_SESSION['psw'])){ // s'il est déjà connecté, pas besoin de le reconnecter... On le redirige
     // si c'est un admin
     if ($_SESSION['id']=='admin' && $_SESSION['psw']=='admin'){
@@ -21,24 +24,17 @@ include('includes/header.inc.html')
                     <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
                         <div class="text-center mb-5">
                             <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-person-fill"></i></div>
-                            <h1 class="fw-bolder">Se connecter</h1>
+                            <h1 class="fw-bolder">Se connecter </h1>
                             <p class="lead fw-normal text-muted mb-0"></p>
                         </div>
 
                         
                         <div class="row gx-5 justify-content-center">
-                                    <!-- Submit error message-->
-                                    <!---->
-                                    <!-- This is what your users will see when there is-->
-                                    <!-- an error submitting the form-->
                                     <?php
-                                        if (isset($_GET["error"])){
-                                            echo '
-                                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">
+                                        if (isset($_GET["error"]) && $_GET["error"]=='1'){
+                                            echo '<div class="alert alert-danger" role="alert" style="width:70%;">
                                             Login incorrect :/
-                                            </div></div>
-
-                                            ';
+                                          </div>';
                                         }
 
                                     ?>
