@@ -16,6 +16,23 @@ include('includes/header.inc.html')
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">
 
+                                    <?php
+
+                                        if (isset($GET['messagesent']) && $GET['messagesent']==1){
+                                            echo '
+                                            <div class="d-none" id="submitSuccessMessage">
+                                            <div class="text-center mb-3">
+                                                <div class="alert alert-success" role="alert">
+                                                    Message reçu... Merci :)
+                                                </div>
+                                            </div>
+                                        </div>
+                                            ';
+                                
+                                        }
+
+                                    ?>
+
                                 <form id="contactForm" action="../php/sendmessage.php" method="POST">
                                     <!-- Name input-->
                                     <div class="form-floating mb-3">
@@ -38,23 +55,6 @@ include('includes/header.inc.html')
                                         <label for="message">Message</label>
                                         <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
                                     </div>
-
-                                    <?php
-
-                                        if (isset($GET['messagesent']) && $GET['messagesent']==1){
-                                            echo '
-                                            <div class="d-none" id="submitSuccessMessage">
-                                            <div class="text-center mb-3">
-                                                <div class="alert alert-success" role="alert">
-                                                    C est envoyé... Merci :)
-                                                </div>
-                                            </div>
-                                        </div>
-                                            ';
-                                
-                                        }
-
-                                    ?>
 
                                     <!-- Submit error message-->
                                     <!---->

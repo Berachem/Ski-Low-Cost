@@ -33,7 +33,7 @@ include('includes/header.inc.html')
                                     <?php
                                         if (isset($_GET["error"]) && $_GET["error"]=='1'){
                                             echo '<div class="alert alert-danger" role="alert" style="width:70%;">
-                                            Login incorrect :/
+                                            Login incorrect :/ (Si vous n avez pas de compte, créez en ...)
                                           </div>';
                                         }
 

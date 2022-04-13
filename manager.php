@@ -143,8 +143,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                             </div>
                         </div>
                     </div>
-                    <form action="php/clientdisconnect.php" method="POST">
-                    <button type="submit" class="btn btn-danger">Se déconnecter</button>
+                    <a href="php/clientdisconnect.php" class="btn btn-danger">Se déconnecter</a>
                 </form>
                 </div>
 
@@ -177,7 +176,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                                     <th>Poids</th>
                                     <th>Pointure</th>
                                     <th>Réduction</th>
-                                    <th>Numéro Groupe</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -203,7 +201,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                             <td>'. $ligne->poidsc .'</td>
                             <td>'. $ligne->pointurec .'</td>
                             <td>'. $ligne->nomr .'</td>
-                            <td>'. $ligne->numg .'</td>
 
 
                             <td><div class="btn-group" data-toggle="buttons"><a href="#" target="_blank" class="btn btn-warning btn-xs" rel="noopener">Modifier</a></div></td>
@@ -232,7 +229,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                 </div>
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-8 col-xl-6">
-                        <form id="contactForm" method="POST" action="book.php">
+                        <form id="contactForm" method="POST" action="ban.php">
                             <!-- Name input-->
                             <div class="form-floating mb-3">
                                 <select class="form-control" name="banned">

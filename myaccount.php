@@ -13,7 +13,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
         header('Location: manager.php');
     }else{
         // sinon si c'est un client...
-        echo 'Salut vous êtes le client : '.$_SESSION['id'].' et le psw='.$_SESSION['psw'];
+        echo 'Salut votre login est : '.$_SESSION['id'].' et le mot de passe = '.$_SESSION['psw'];
+        echo '<br> Vous êtes le client : '.$_SESSION["code"];
     }
 
 }else{// pas encore connecté
@@ -90,10 +91,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
 
                     </div>
                 </div>
-                <form action="php/clientdisconnect.php" method="POST">
-                    <button type="submit" class="btn btn-danger">Se déconnecter</button>
-                </form>
-                
+
+                <a href="php/clientdisconnect.php" class="btn btn-danger">Se déconnecter</a>
+
             </div>
         </section>
 

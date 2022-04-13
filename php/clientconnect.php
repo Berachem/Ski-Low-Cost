@@ -11,6 +11,7 @@ function getClientCode($id, $psw,$conn){
             return $ligne['code_client'];
         }
     }
+    return false;
 }
 
 if (isset($_POST['id']) && isset($_POST['psw'])){
@@ -21,13 +22,15 @@ if (isset($_POST['id']) && isset($_POST['psw'])){
         $_SESSION["psw"] = $_POST['psw'];
         header('Location: ../manager.php');
 
-    }elseif (getClientCode( $_POST['id'], $_POST['psw'],$conn)){// sinon si c'est un client...
+    }elseif (getClientCode( $_POST['id'], $_POST['psw'],$conn) != false){// sinon si c'est un client...
         
         $_SESSION["id"] = $_POST['id'];
         $_SESSION["psw"] = $_POST['psw'];
+        $_SESSION["code"] = getClientCode( $_POST['id'], $_POST['psw'],$conn);
+
         header('Location: ../myaccount.php');
 
-    }else{// sinon (erreur)... -> Il n'a pas de compte
+    }else{// sinon (erreur)... -> Il n'a pas de compte correspondant
         header('Location: ../connexion.php?error=1'); 
     }
     
