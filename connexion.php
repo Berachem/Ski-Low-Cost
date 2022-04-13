@@ -57,7 +57,7 @@ include('includes/header.inc.html')
                                     <br>
                                               
                                 </form>
-                                <a href="creercompte.php"> <div class="d-grid"><button class="btn btn-secondary btn-lg" id="createAccount" >Créer un compte</button></div></a>
+                                <a href="creercompte.php"> <div class="d-grid"><button class="btn btn-secondary btn-lg"  >Créer un compte</button></div></a>
                             
                             </div>
                         </div>

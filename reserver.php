@@ -2,20 +2,21 @@
 
 
 session_start();
-if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
+if ((isset($_SESSION['id']) && isset($_SESSION['psw'])) || isset($_SESSION['code'])){
     // si c'est un admin
     if ($_SESSION['id']=='admin' && $_SESSION['psw']=='admin'){
-        header('Location: ../manager.php');
+        header('Location: manager.php');
     }
     
-}
-else{
+}else{
     // si personne ne s'est connecté
-    header('Location: ../connexion.php');
+    header('Location: connexion.php');
 }
 
 include('includes/header.inc.html');
 include('php/connexion.inc.php');
+
+echo $_SESSION["code"];
 
 ?>
             <!-- Page content-->
@@ -25,19 +26,21 @@ include('php/connexion.inc.php');
                     <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
                         <div class="text-center mb-5">
                             <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-credit-card"></i></div>
-                            <h1 class="fw-bolder">Réserver</h1>
-                            <p class="lead fw-normal text-muted mb-0">Vos vacances de rêves !</p>
+                            <h1 class="fw-bolder">Choisissez le groupe avec qui vous voyagerez</h1>
+                            <p class="lead fw-normal text-muted mb-0">Vos vacances de rêves sont proches !</p>
                         </div>
                         <div class="row gx-5 justify-content-center">
+                            <?php
+                                    if (isset($_GET["success"]) && $_GET["success"]=='1'){
+                                        echo '<div class="alert alert-success" role="alert" style="width:70%;">
+                                        Succès ! (Vous avez été ajouté au groupe de voyage)
+                                        </div>';
+                                    }
+
+                             ?>
                             <div class="col-lg-8 col-xl-6">
-                                <!-- * * * * * * * * * * * * * * *-->
-                                <!-- * * SB Forms Contact Form * *-->
-                                <!-- * * * * * * * * * * * * * * *-->
-                                <!-- This form is pre-integrated with SB Forms.-->
-                                <!-- To make this form functional, sign up at-->
-                                <!-- https://startbootstrap.com/solution/contact-forms-->
-                                <!-- to get an API token!-->
-                                <form action="reserverforclient.php" method="POST">
+
+                                <form action="php/addclientgroup.php" method="POST">
 
                                     <div class="form-floating mb-3">
                                     <select class="form-control" name="groupe" required>
@@ -59,7 +62,7 @@ include('php/connexion.inc.php');
                                     </select>         
                                     </div>
                                     <!-- Submit Button-->
-                                    <div class="d-grid"><button class="btn btn-primary btn-lg" type="submit">Réserver</button></div>
+                                    <div class="d-grid"><button class="btn btn-primary btn-lg" type="submit">Choisir</button></div>
                                    
                                 </form>
                             </div>

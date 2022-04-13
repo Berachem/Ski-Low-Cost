@@ -1,15 +1,29 @@
 <?php
 
 session_start();
+
+
+function getClientCode($id, $psw,$conn){
+    $result = $conn->query("SELECT * FROM login");
+    
+    while($ligne = $result->fetch()){
+        if ($ligne['id']==$id && $ligne['psw'] == $psw){
+            return $ligne['code_client'];
+        }
+    }
+    return false;
+}
+
+
 if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
     // si c'est un admin
     if ($_SESSION['id']=='admin' && $_SESSION['psw']=='admin'){
-        header('Location: ../manager.php');
+        header('Location: manager.php');
     }
-}
-else{
+    
+}else{
     // si personne ne s'est connecté
-    header('Location: ../connexion.php');
+    header('Location: connexion.php');
 }
 
 include('includes/header.inc.html')
