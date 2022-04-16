@@ -7,7 +7,7 @@ function getClientCode($id, $psw,$conn){
     $result = $conn->query("SELECT * FROM login");
     
     while($ligne = $result->fetch()){
-        if ($ligne['id']==$id && $ligne['psw'] == $psw){
+        if ($ligne['id']==$id && $ligne['psw'] == md5($psw)){
             return $ligne['code_client'];
         }
     }
