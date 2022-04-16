@@ -20,7 +20,7 @@ include('php/connexion.inc.php');
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">
 
-                                <form action="addclient.php" method="POST">
+                                <form action="php/addclient.php" method="POST">
                                     <br>
                                     <h1 class="fw-bolder">Informations</h1>
                                     <!-- Name input-->
@@ -72,15 +72,15 @@ include('php/connexion.inc.php');
                                     <br>
                                     <br>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" name="taille" type="text" required/>
-                                        <label for="name">Taille</label>
+                                        <input class="form-control" name="taille" type="number" required/>
+                                        <label for="name">Taille (cm)</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" name="poids" type="text"  required/>
+                                        <input class="form-control" name="poids" type="number"  required/>
                                         <label for="name">Poids</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" name="pointure" type="text"  required/>
+                                        <input class="form-control" name="pointure" type="number"  required/>
                                         <label for="name">Pointure</label>
                                     </div>
                                     <br>
