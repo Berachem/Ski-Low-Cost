@@ -48,10 +48,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                                     <p class="mb-0">
                                     <?php
 
-                                            $requete=$conn->query("SELECT numchambre FROM chambre WHERE numchambre NOT IN (SELECT DISTINCT occupe.numchambre 
+                                            $requete=$conn->query("SELECT DISTINCT numChambre 
                                             FROM occupe
                                             NATURAL JOIN reservations
-                                            WHERE CURRENT_DATE BETWEEN reservations.date_debutr AND reservations.date_finr)");    
+                                            WHERE CURRENT_DATE NOT BETWEEN reservations.date_debutr AND reservations.date_finr");    
                                             $data = $requete->fetch();
                                             
                                             $data = array_unique($data);
@@ -123,22 +123,44 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
             <section class="py-5" id="features">
                 <div class="container px-5 my-5">
                     <div class="row gx-5">
-                        <div class="col-lg-4 mb-5 mb-lg-0"><h2 class="fw-bolder mb-0">Chercher des choses spécifiques</h2></div>
+                        <div class="col-lg-4 mb-5 mb-lg-0"><h2 class="fw-bolder mb-0">Changer la formule choisie par un client</h2></div>
                         <div class="col-lg-8">
                             <div class="row gx-5 row-cols-1 row-cols-md-2">
-                                <div class="col mb-5 h-100">
-                                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-currency-euro"></i></div>
-                                    <h2 class="h5">Liste des facture de la chambre</h2> <input class="form-control" type="text" name="" value="214">
-                                    <p class="mb-0">19/03 : 789 €</p>
-                                    <p class="mb-0">12/03 : 1235 €</p>
-                                    <p class="mb-0">09/03 : 1235 €</p>
-                                </div>
-                                <div class="col mb-5 h-100">
-                                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-door-open"></i></div>
-                                    <h2 class="h5">La facture du groupe</h2>
-                                    <h2 class="h5">Liste des facture de la chambre</h2> <input class="form-control" type="text" name="" value="G156">
-                                    <p class="mb-0">19/03 : 7560 €</p>
-                                </div>
+                            <form id="contactForm" method="POST" action="php/changeFormula.php">
+                            <!-- Name input-->
+                            <div class="form-floating mb-3">
+                                <select class="form-control" name="newFormuleClient">
+                                    <option >Sélectionner un client</option>
+                                <?php
+
+                                    $results=$conn->query("SELECT * FROM clients");
+
+                                                                
+                                    // Exécution de la requête SQL
+                                    while( $ligne = $results->fetch(PDO::FETCH_OBJ) ) {
+                                    echo '
+
+                                        <option value="'.$ligne->codec.'">'.$ligne->prenomc.' (code :'.$ligne->codec.')</option>
+
+                                        ';
+                                    }
+
+                                ?>
+                                </select>
+
+                                <br>
+
+                                <select class="form-control" name="newFormule">
+                                    <option value="tout_compris">Tout compris (à 510 euros)</option>
+                                    <option value="non_skieur">Non Skieur (à 410 euros)</option>
+                                </select> 
+                            </div>
+    
+                    
+                            <!-- Submit Button-->
+                            <div class="d-grid"><button class="btn btn-info btn-lg" type="submit">Changer</button></div>
+                            </form>
+          
 
                             </div>
                         </div>
@@ -159,9 +181,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                     <h1 class="fw-bolder">Liste des clients</h1>
                     <p class="lead fw-normal text-muted mb-0"></p>
                 </div>
-                <div class="row gx-2 justify-content-center">
-                    <div class="col-lg-8 col-xl-6">
-                            <table id="employee_grid" class="table" width="100%" cellspacing="0">
+                <div class="row gx-2 justify-content-center" >
+                    <div class="col-lg-8 " >
+                            <table id="employee_grid" class="table" width="100%" cellspacing="0" >
                                     <thead>
                                     <tr>
                                     <th>Code client</th>
