@@ -29,30 +29,15 @@ $results=$conn->query("SELECT * FROM clients");
                             if ($_POST['client']==$ligne[0]){
 
                                 for (int i=0; i< count($ligne);i++){
-                                    
+                                    echo 'Changer '.$ligne[i].' : '
+                                    echo '<input type="text" value="'.$ligne[i].'">';
                                 }
 
                             }
-                        echo '
-
-                            <tr>
-                            <td>'. $ligne->codec .'</td>
-                            <td>'. $ligne->nomc .'</td>
-                            <td>'. $ligne->prenomc .'</td>
-                            <td>'. $ligne->date_de_naissancec .'</td>
-                            <td>'. $ligne->adressec .'</td>
-                            <td>'. $ligne->telephonec .'</td>
-                            <td>'. $ligne->formulec .'</td>
-                            <td>'. $ligne->niveau_skic .'</td>
-                            <td>'. $ligne->taillec .'</td>
-                            <td>'. $ligne->poidsc .'</td>
-                            <td>'. $ligne->pointurec .'</td>
-                            <td>'. $ligne->nomr .'</td>
-
-
-                            <td><div class="btn-group" data-toggle="buttons"><a href="php/editInfoForm.php?client='. $ligne->codec .'" target="_blank" class="btn btn-warning btn-xs" rel="noopener">Modifier</a></div></td>
-                            </tr>
-                            ';
+                
                         }
 ?>
+<button class="btn btn-info">Modifier</button>
 </form>
+
+
