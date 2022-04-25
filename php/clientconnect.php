@@ -22,7 +22,7 @@ if (isset($_POST['id']) && isset($_POST['psw'])){
         $_SESSION["psw"] = $_POST['psw'];
         header('Location: ../manager.php');
 
-    }elseif (getClientCode( $_POST['id'], $_POST['psw'],$conn) != false){// sinon si c'est un client...
+    }elseif (getClientCode( $_POST['id'], $_POST['psw'],$conn) != false){// c'est un client...
         
         $_SESSION["id"] = $_POST['id'];
         $_SESSION["psw"] = $_POST['psw'];

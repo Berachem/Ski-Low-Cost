@@ -123,38 +123,30 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
             <section class="py-5" id="features">
                 <div class="container px-5 my-5">
                     <div class="row gx-5">
-                        <div class="col-lg-4 mb-5 mb-lg-0"><h2 class="fw-bolder mb-0">Changer la formule choisie par un client</h2></div>
+                        <div class="col-lg-4 mb-5 mb-lg-0"><h2 class="fw-bolder mb-0">Changer le tarif d'une formule</h2></div>
                         
                         <div class="col-lg-8">
                             <div class="row gx-5 row-cols-1 row-cols-md-2">
-                                
+                            <?php
+                                        if (isset($_GET["newTarif"]) && $_GET["newTarif"]=='1'){
+                                            echo '<div class="alert alert-success" role="alert" style="width:70%;">
+                                            Changement de Tarif réussi ! :)
+                                          </div>';
+                                        }
+                                        echo '<br>';
+                                    ?>
                             <form id="contactForm" method="POST" action="php/changeFormula.php">
-                            <!-- Name input-->
+                            
                             <div class="form-floating mb-3">
-                                <select class="form-control" name="newFormuleClient">
-                                    <option >Sélectionner un client</option>
-                                <?php
-
-                                    $results=$conn->query("SELECT * FROM clients");
-
-                                                                
-                                    // Exécution de la requête SQL
-                                    while( $ligne = $results->fetch(PDO::FETCH_OBJ) ) {
-                                    echo '
-
-                                        <option value="'.$ligne->codec.'">'.$ligne->prenomc.' (code :'.$ligne->codec.')</option>
-
-                                        ';
-                                    }
-
-                                ?>
-                                </select>
+                            
+                                 <input class="form-control"  name='tarif' type="number" placeholder="Entrez le nouveau tarif..." data-sb-validations="required" />
+                                <label for="tarif">Tarif</label>
 
                                 <br>
 
-                                <select class="form-control" name="newFormule">
-                                    <option value="tout_compris">Tout compris (à 510 euros)</option>
-                                    <option value="non_skieur">Non Skieur (à 410 euros)</option>
+                                <select class="form-control" name="formule">
+                                    <option value="tout_compris">Tout compris</option>
+                                    <option value="non_skieur">Non Skieur</option>
                                 </select> 
                             </div>
     
@@ -226,8 +218,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                             <td>'. $ligne->pointurec .'</td>
                             <td>'. $ligne->nomr .'</td>
 
-
-                            <td><div class="btn-group" data-toggle="buttons"><a href="php/editInfoForm.php?client='. $ligne->codec .'" target="_blank" class="btn btn-warning btn-xs" rel="noopener">Modifier</a></div></td>
                             </tr>
                             ';
                         }
@@ -253,6 +243,14 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                 </div>
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-8 col-xl-6">
+                    <?php
+                            if (isset($_GET["banned"]) && $_GET["banned"]=='1'){
+                                echo '<div class="alert alert-warning" role="alert" style="width:70%;">
+                                Client banni avec succès...
+                                </div>';
+                            }
+                            echo '<br>';
+                                    ?>
                         <form id="contactForm" method="POST" action="php/ban.php">
                             <!-- Name input-->
                             <div class="form-floating mb-3">
