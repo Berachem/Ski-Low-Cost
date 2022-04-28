@@ -1,5 +1,6 @@
 <?php
-include('includes/header.inc.html')
+include('includes/header.inc.html');
+
 
 ?>
 <?php
@@ -12,6 +13,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
     if ($_SESSION['id']=='admin' && $_SESSION['psw']=='admin'){
         header('Location: manager.php');
     }else{
+        include('php/connexion.inc.php');
         // sinon si c'est un client...
         echo 'Salut votre login est : '.$_SESSION['id'].' et le mot de passe = '.$_SESSION['psw'];
         echo '<br> Vous êtes le client : '.$_SESSION["code"];
@@ -35,8 +37,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                                 <p class="mb-0">
                                     
                                 <?php
-
-                                    echo '234';
+                                    $chambre=$conn->query("SELECT numchambre FROM occupe WHERE occupe.codec = ".$_SESSION["code"]);
+                                    while( $ligne = $chambre->fetch() ) {
+                                        echo $ligne[0];
+                                    }
 
                                 ?>
 
@@ -51,8 +55,17 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                                 <h2 class="h5">Votre groupe</h2>
                                 <p class="mb-0">
                                 <?php
-
-                                        echo "bg de la street";
+                                    $groupe=$conn->query("SELECT nomgroupe FROM groupe,appartient WHERE groupe.numg = appartient.numg and appartient.codec = ".$_SESSION['code']);
+                                    while($ligne = $groupe->fetch(PDO::FETCH_OBJ)){
+                                        if (isset($groupe)){
+                                            echo $ligne->nomgroupe;
+                                        }
+                                        else{
+                                            echo 'Vous n\'avez pas de groupe';
+                                        }
+                                    }
+                                    
+                                    
 
                                 ?>
                                     
@@ -66,7 +79,16 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
 
                                 <?php
 
-                                    echo "01/01/2023 à 08/02/2023";
+                                    $reservation=$conn->query("SELECT date_debutr,date_finr FROM reservations,appartient WHERE reservations.numg = appartient.numg and appartient.codec = ".$_SESSION['code']);
+                                    while($ligne = $reservation->fetch(PDO::FETCH_OBJ)){
+                                        if (isset($reservation)){
+                                            echo 'date début : '.$ligne->date_debutr;
+                                            echo '<br>date fin : '.$ligne->date_finr;
+                                        }
+                                        else{
+                                            echo 'Vous n\'avez pas de réservation';
+                                        }
+                                    }
                                 ?>
                                     
                                 </p>
@@ -77,7 +99,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                                 <p class="mb-0">
                                 <?php
 
-                                    echo "oui"
+                                    $formule=$conn->query("SELECT formulec FROM clients WHERE clients.codec = ".$_SESSION["code"]);
+                                    while( $ligne = $formule->fetch() ) {
+                                        echo $ligne[0];
+                                    }
 
                                     ?>
                                 
