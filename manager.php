@@ -71,9 +71,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                                         $requete=$conn->query("SELECT COUNT(DISTINCT numChambre) 
                                         FROM occupe,reservation
                                         WHERE occupe.numr = reservations.numr AND CURRENT_DATE BETWEEN reservations.date_debutr AND reservations.date_finr");    
-                                        echo "SELECT COUNT(DISTINCT numChambre) 
-                                        FROM occupe,reservation
-                                        WHERE occupe.numr = reservations.numr AND CURRENT_DATE BETWEEN reservations.date_debutr AND reservations.date_finr";
                                         
                                         while( $ligne = $requete->fetch(PDO::FETCH_OBJ) ) {
                                             echo '<option value="'.$ligne->count.'">Nombre de chambres occupés'.$ligne->count.'</option>';
