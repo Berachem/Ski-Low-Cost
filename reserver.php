@@ -47,15 +47,15 @@ echo $_SESSION["code"];
                                             <option value="">Choisir un groupe</option>
                                             <?php
 
-                                                $results=$conn->query("SELECT numg FROM groupe_clients");
+                                                $results=$conn->query("SELECT DISTINCT nomgroupe FROM groupe,appartient WHERE groupe.numg = appartient.numg");
 
 
                                                 // Exécution de la requête SQL
                                                 while( $ligne = $results->fetch(PDO::FETCH_OBJ) ) {
                                                 echo '
 
-                                                    <option value="'.$ligne->numg.'"> Groupe '.$ligne->numg.'</option> ';
-                                                    echo $ligne->numg;
+                                                    <option value="'.$ligne->nomgroupe.'"> Groupe '.$ligne->nomgroupe.'</option> ';
+                                                    echo $ligne->nomgroupe;
                                                 }
 
                                             ?>
