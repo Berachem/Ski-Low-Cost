@@ -145,12 +145,12 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                                 <br>
                                 <select class="form-control" name="groupe">
                                 <?php
-                                        $results=$conn->query("SELECT DISTINCT nomgroupe FROM groupe,appartient WHERE groupe.numg = appartient.numg");
+                                        $results=$conn->query("SELECT DISTINCT nomgroupe, groupe_clients.numg AS numg FROM groupe,groupe_clients WHERE groupe.numg = groupe_clients.numg");
 
 
                                         // Exécution de la requête SQL
                                         while( $ligne = $results->fetch(PDO::FETCH_OBJ) ) {
-                                        echo '<option value="'.$ligne->nomgroupe.'">Groupe '.$ligne->nomgroupe.'</option>';
+                                        echo '<option value="'.$ligne->numg.'">Groupe '.$ligne->nomgroupe.'</option>';
                                         }
                                     ?>
                                 </select> 
@@ -162,16 +162,38 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                             </form>
 
                             </div>
+                            
+<?php 
+function isAlreadyInAGroup($codec, $conn){
+    $result = $conn->query("SELECT * FROM appartient");
+    
+    while($ligne = $result->fetch()){
+        if ($ligne["codec"]==$codec){
+            return true;
+        }
+    }
+    return false;
+}
 
-                            <br>
-                            <div class="row gx-5 row-cols-1 row-cols-md-2">
-                                
-                                    <form action="php/createGroup.php" method="POST">
-                                    <label for="groupeName">Nom de groupe</label>
-                                        <input class="form-control" id="name" name="groupeName" type="text"  required/>
-                                     <br>
-                                    <button class="btn btn-primary btn-lg" type="submit">Créer mon propre groupe</button>
-                                </form>
+if (!isAlreadyInAGroup($_SESSION["code"],$conn)){
+
+    echo "<br><div class='row gx-5 row-cols-1 row-cols-md-2'>
+            <div class='row'>
+                <form action='php/createGroup.php' method='POST'>
+                <label for='groupeName'>Nom de groupe</label>
+                    <input class='form-control' id='name' name='groupeName' type='text'  required/>
+                    <br>
+                    
+                    <button class='btn btn-primary btn-lg' type='submit'>Créer mon propre groupe</button>     
+            </form> 
+            ";
+}else{
+    echo '<a href="group.php"> <button class="btn btn-secondary btn-lg">Voir mon groupe</button></a>';
+}
+                               
+                        
+?>          
+                               </div>
                             </div>
                             
                         </div>

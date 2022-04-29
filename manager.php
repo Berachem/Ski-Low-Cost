@@ -53,10 +53,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
 
                                         // Exécution de la requête SQL
                                         while( $ligne = $results->fetch(PDO::FETCH_OBJ) ) {
-                                            echo '<option value="'.$ligne->count.'">Nombre de chambres disponible '.$ligne->count.'</option>';
+                                            echo $ligne->count;
                                         }
-
-                                    ?>
+                                        
+                                    ?> chambres
                                         
                                     
                                     </p>
@@ -68,25 +68,23 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
 
                                     <?php
 
-                                        $requete=$conn->query("SELECT COUNT(DISTINCT numChambre) 
-                                        FROM occupe,reservation
-                                        WHERE occupe.numr = reservations.numr AND CURRENT_DATE BETWEEN reservations.date_debutr AND reservations.date_finr");    
+                                        $requete=$conn->query("SELECT COUNT(DISTINCT numChambre) total FROM occupe,reservations WHERE occupe.numr = reservations.numr AND CURRENT_DATE BETWEEN reservations.date_debutr AND reservations.date_finr");    
                                         
                                         while( $ligne = $requete->fetch(PDO::FETCH_OBJ) ) {
-                                            echo '<option value="'.$ligne->count.'">Nombre de chambres occupés'.$ligne->count.'</option>';
+                                            echo $ligne->total;
                                         }
 
-                                    ?>
+                                    ?> chambres
                                         
                                     </p>
                                 </div>
                                 <div class="col h-100">
                                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-people-fill"></i></div>
-                                    <h2 class="h5">Nombre de clients dans l'hôtel</h2>
+                                    <h2 class="h5">Nombre de clients de l'hôtel</h2>
                                     <p class="mb-0">
                                     <?php
 
-                                        $cpt=$conn->query("SELECT COUNT(*) AS total FROM occupe");                         
+                                        $cpt=$conn->query("SELECT COUNT(*) AS total FROM clients");                         
                                         // Exécution de la requête SQL
                                         while( $ligne = $cpt->fetch(PDO::FETCH_OBJ) ) {
                                             echo $ligne->total;
@@ -249,7 +247,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                                     while( $ligne = $results->fetch(PDO::FETCH_OBJ) ) {
                                     echo '
 
-                                        <option value="'.$ligne->codec.'">'.$ligne->prenomc.' (code :'.$ligne->codec.')</option>
+                                        <option value="'.$ligne->codec.'">'.$ligne->prenomc.' (code: '.$ligne->codec.')</option>
 
                                         ';
                                     }
