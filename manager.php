@@ -49,7 +49,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                                     <?php
 
                                             $requete=$conn->query("SELECT DISTINCT numChambre 
-                                            FROM occupe
+                                            FROM chambre
+                                            NATURAL JOIN occupe
                                             NATURAL JOIN reservations
                                             WHERE CURRENT_DATE NOT BETWEEN reservations.date_debutr AND reservations.date_finr");    
                                             $data = $requete->fetch();

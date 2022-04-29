@@ -39,7 +39,13 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                                 <?php
                                     $chambre=$conn->query("SELECT numchambre FROM occupe WHERE occupe.codec = ".$_SESSION["code"]);
                                     while( $ligne = $chambre->fetch() ) {
-                                        echo $ligne[0];
+                                        if (isset($chambre)){
+                                            echo $ligne[0];
+                                        }
+                                        else{
+                                            echo 'vous n\'avez pas de chambre';
+                                        }
+
                                     }
 
                                 ?>
@@ -118,9 +124,62 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                 </div>
 
                 <a href="php/clientdisconnect.php" class="btn btn-danger">Se déconnecter</a>
+                <br>
+                <br>
+                <div class="row gx-5">
+                        <div class="col-lg-4 mb-5 mb-lg-0"><h2 class="fw-bolder mb-0">Voyager avec un groupe</h2></div>
+                        
+                        <div class="col-lg-8">
+                            <div class="row gx-5 row-cols-1 row-cols-md-2">
+                            <?php
+                                        if (isset($_GET["newGroup"]) && $_GET["newGroup"]=='1'){
+                                            echo '<div class="alert alert-success" role="alert" style="width:70%;">
+                                            Vous avez été affecté au groupe ! :)
+                                          </div>';
+                                        }
+                                        echo '<br>';
+                                    ?>
+                            <form id="contactForm" method="POST" action="php/affecterGroupe.php">
+                            
+                            <div class="form-floating mb-3">
+                                <br>
+                                <select class="form-control" name="groupe">
+                                <?php
+                                        $results=$conn->query("SELECT * FROM groupe_clients");
 
+                                            
+                                        // Exécution de la requête SQL
+                                        while( $ligne = $results->fetch(PDO::FETCH_OBJ) ) {
+                                        echo '<option value="'.$ligne->numg.'">Groupe '.$ligne->numg.'</option>';
+                                        }
+                                    ?>
+                                </select> 
+                            </div>
+    
+                    
+                            <!-- Submit Button-->
+                            <div class="d-grid"><button class="btn btn-info btn-lg" type="submit">Envoyer</button></div>
+                            </form>
+
+                            </div>
+
+                            <br>
+                            <div class="row gx-5 row-cols-1 row-cols-md-2">
+                                <a href="group.php">
+                                    <button class="btn btn-primary btn-lg" >Créer mon propre groupe</button>
+                                </a>
+                            </div>
+                            
+                        </div>
+
+
+
+                        
+                    </div>
+                    
             </div>
         </section>
+        
 
         
 

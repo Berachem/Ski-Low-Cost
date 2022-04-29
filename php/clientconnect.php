@@ -33,12 +33,6 @@ if (isset($_POST['id']) && isset($_POST['psw'])){
     }else{// sinon (erreur)... -> Il n'a pas de compte correspondant
         header('Location: ../connexion.php?error=1'); 
     }
-    
-
-
-
-    
-
 }
 
 
