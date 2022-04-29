@@ -48,23 +48,13 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                                     <p class="mb-0">
                                     <?php
 
-                                            $requete=$conn->query("SELECT DISTINCT numChambre 
-                                            FROM chambre
-                                            NATURAL JOIN occupe
-                                            NATURAL JOIN reservations
-                                            WHERE CURRENT_DATE NOT BETWEEN reservations.date_debutr AND reservations.date_finr");    
-                                            $data = $requete->fetch();
-                                            
-                                            $data = array_unique($data);
-                                            // Exécution de la requête SQL
-
-                                            echo sizeof($data);
-                                            echo ' chambre(s) (';
-                                            echo implode(",", array_values($data));
-                                            echo ')';
+                                        $results=$conn->query("SELECT COUNT(DISTINCT chambre.numchambre) FROM chambre,occupe,reservations WHERE chambre.numchambre NOT IN (SELECT numchambre FROM occupe) OR chambre.numchambre = occupe.numchambre AND occupe.numr = reservations.numr AND CURRENT_DATE NOT BETWEEN reservations.date_debutr AND reservations.date_finr");
 
 
-                                        
+                                        // Exécution de la requête SQL
+                                        while( $ligne = $results->fetch(PDO::FETCH_OBJ) ) {
+                                            echo '<option value="'.$ligne->count.'">Nombre de chambres disponible '.$ligne->count.'</option>';
+                                        }
 
                                     ?>
                                         
@@ -78,20 +68,16 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
 
                                     <?php
 
-                                        $requete=$conn->query("SELECT DISTINCT numChambre 
-                                        FROM occupe
-                                        NATURAL JOIN reservations
-                                        WHERE CURRENT_DATE BETWEEN reservations.date_debutr AND reservations.date_finr");    
+                                        $requete=$conn->query("SELECT COUNT(DISTINCT numChambre) 
+                                        FROM occupe,reservation
+                                        WHERE occupe.numr = reservations.numr AND CURRENT_DATE BETWEEN reservations.date_debutr AND reservations.date_finr");    
+                                        echo "SELECT COUNT(DISTINCT numChambre) 
+                                        FROM occupe,reservation
+                                        WHERE occupe.numr = reservations.numr AND CURRENT_DATE BETWEEN reservations.date_debutr AND reservations.date_finr";
                                         
-                                        $data = $requete->fetch();
-
-                                        $data = array_unique($data);
-                                        // Exécution de la requête SQL
-
-                                        echo sizeof($data);
-                                        echo ' chambre(s) (';
-                                        echo implode(",", array_values($data));
-                                        echo ')';
+                                        while( $ligne = $requete->fetch(PDO::FETCH_OBJ) ) {
+                                            echo '<option value="'.$ligne->count.'">Nombre de chambres occupés'.$ligne->count.'</option>';
+                                        }
 
                                     ?>
                                         
