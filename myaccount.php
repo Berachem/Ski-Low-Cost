@@ -139,27 +139,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                                         }
                                         echo '<br>';
                                     ?>
-                            <form id="contactForm" method="POST" action="php/affecterGroupe.php">
                             
-                            <div class="form-floating mb-3">
-                                <br>
-                                <select class="form-control" name="groupe">
-                                <?php
-                                        $results=$conn->query("SELECT DISTINCT nomgroupe, groupe_clients.numg AS numg FROM groupe,groupe_clients WHERE groupe.numg = groupe_clients.numg");
-
-
-                                        // Exécution de la requête SQL
-                                        while( $ligne = $results->fetch(PDO::FETCH_OBJ) ) {
-                                        echo '<option value="'.$ligne->numg.'">Groupe '.$ligne->nomgroupe.'</option>';
-                                        }
-                                    ?>
-                                </select> 
-                            </div>
-    
-                    
-                            <!-- Submit Button-->
-                            <div class="d-grid"><button class="btn btn-info btn-lg" type="submit">Envoyer</button></div>
-                            </form>
 
                             </div>
                             
@@ -177,7 +157,32 @@ function isAlreadyInAGroup($codec, $conn){
 
 if (!isAlreadyInAGroup($_SESSION["code"],$conn)){
 
-    echo "<br><div class='row gx-5 row-cols-1 row-cols-md-2'>
+    echo "
+    <form id='contactForm' method='POST' action='php/affecterGroupe.php'>
+                            
+                            <div class='form-floating mb-3'>
+                                <br>
+                                <select class='form-control' name='groupe'>";
+                                
+                                        $results=$conn->query('SELECT DISTINCT nomgroupe, groupe_clients.numg AS numg FROM groupe,groupe_clients WHERE groupe.numg = groupe_clients.numg');
+
+
+                                        // Exécution de la requête SQL
+                                        while( $ligne = $results->fetch(PDO::FETCH_OBJ) ) {
+                                        echo '<option value="'.$ligne->numg.'">Groupe '.$ligne->nomgroupe.'</option>';
+                                        }
+                                    
+                                        echo"
+                                </select> 
+                            </div>
+    
+                    
+                            <!-- Submit Button-->
+                            <div class='d-grid'><button class='btn btn-info btn-lg' type='submit'>Envoyer</button></div>
+                            </form>
+    
+    
+    <br><div class='row gx-5 row-cols-1 row-cols-md-2'>
             <div class='row'>
                 <form action='php/createGroup.php' method='POST'>
                 <label for='groupeName'>Nom de groupe</label>

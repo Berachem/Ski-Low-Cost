@@ -16,7 +16,7 @@ $requete2->execute(array($_POST['id'],md5($_POST['psw']),$code_client)); // mett
 
 
 
-header('Location: ../myaccount.php');
+header('Location: ../connexion.php?newAccount=1');
 
 
 ?>

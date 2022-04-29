@@ -29,7 +29,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
 include('includes/header.inc.html');
 include('connexion.inc.php');
 
-
+echo "code client -> ".$_SESSION['code'];
 ?>
             <!-- Page content-->
             <section class="py-5">
@@ -58,10 +58,8 @@ include('connexion.inc.php');
                                         $membres = $conn->query("SELECT nomc,prenomc FROM clients,appartient WHERE appartient.codec = clients.codec and appartient.numg IN (".$numgroupe.")");
                                         while( $ligne = $membres->fetch(PDO::FETCH_OBJ) ) {
                                             echo '
-                                            <div class="form-floating mb-3">
                                             <p>'.$ligne->nomc.' '.$ligne->prenomc.'</p>
-                                            Sera assigné dans la chambre : <input type="text" value="245"> 
-                                            </div>';
+                                            Sera assigné dans la chambre : <input type="text" value="245"> ';
                                         }
                                     ?>
                                     

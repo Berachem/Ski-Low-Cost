@@ -36,6 +36,11 @@ include('includes/header.inc.html')
                                             Login incorrect :/ (Si vous n avez pas de compte, créez en ...)
                                           </div>';
                                         }
+                                        if (isset($_GET["newAccount"]) && $_GET["newAccount"]=='1'){
+                                            echo '<div class="alert alert-success" role="alert" style="width:70%;">
+                                            Compte créé avec succès ! :)
+                                          </div>';
+                                        }
 
                                     ?>
                             <div class="col-lg-8 col-xl-6">
