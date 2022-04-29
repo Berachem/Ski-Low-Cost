@@ -145,12 +145,12 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                                 <br>
                                 <select class="form-control" name="groupe">
                                 <?php
-                                        $results=$conn->query("SELECT * FROM groupe_clients");
+                                        $results=$conn->query("SELECT DISTINCT nomgroupe FROM groupe,appartient WHERE groupe.numg = appartient.numg");
 
-                                            
+
                                         // Exécution de la requête SQL
                                         while( $ligne = $results->fetch(PDO::FETCH_OBJ) ) {
-                                        echo '<option value="'.$ligne->numg.'">Groupe '.$ligne->numg.'</option>';
+                                        echo '<option value="'.$ligne->nomgroupe.'">Groupe '.$ligne->nomgroupe.'</option>';
                                         }
                                     ?>
                                 </select> 
@@ -165,9 +165,13 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
 
                             <br>
                             <div class="row gx-5 row-cols-1 row-cols-md-2">
-                                <a href="group.php">
-                                    <button class="btn btn-primary btn-lg" >Créer mon propre groupe</button>
-                                </a>
+                                
+                                    <form action="php/createGroup.php" method="POST">
+                                    <label for="groupeName">Nom de groupe</label>
+                                        <input class="form-control" id="name" name="groupeName" type="text"  required/>
+                                     <br>
+                                    <button class="btn btn-primary btn-lg" type="submit">Créer mon propre groupe</button>
+                                </form>
                             </div>
                             
                         </div>
