@@ -26,8 +26,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
     header('Location: connexion.php');
 }
 
-include('includes/header.inc.html')
-
+include('includes/header.inc.html');
+include('connexion.inc.php');
 
 
 ?>
@@ -53,41 +53,22 @@ include('includes/header.inc.html')
                                 <!-- to get an API token!-->
                                 <form id="contactForm" method="POST" action="book.php">
                                     <!-- Name input-->
-                                    <div class="form-floating mb-3">
-                                        <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                        <label for="name">Stevie Wonder</label>
-                                        Sera assigné dans la chambre : <input type="text" value="245"> 
-                                    </div>
+                                    <?php
+                                        $numgroupe = "SELECT numg FROM appartient WHERE codec = ".$_SESSION['code'];
+                                        $membres = $conn->query("SELECT nomc,prenomc FROM clients,appartient WHERE appartient.codec = clients.codec and appartient.numg IN (".$numgroupe.")");
+                                        while( $ligne = $membres->fetch(PDO::FETCH_OBJ) ) {
+                                            echo '
+                                            <div class="form-floating mb-3">
+                                            <p>'.$ligne->nomc.' '.$ligne->prenomc.'</p>
+                                            Sera assigné dans la chambre : <input type="text" value="245"> 
+                                            </div>';
+                                        }
+                                    ?>
+                                    
                                                                         <!-- Name input-->
-                                    <div class="form-floating mb-3">
-                                        <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                        <label for="name">James Brown</label>
-                                        Sera assigné dans la chambre : <input type="text" value="113"> 
-                                    </div>
-                                                                        <!-- Name input-->
-                                    <div class="form-floating mb-3">
-                                        <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                        <label for="name">Elton John</label>
-                                        Sera assigné dans la chambre : <input type="text" value="245"> 
-                                    </div>
-                                                                        <!-- Name input-->
-                                    <div class="form-floating mb-3">
-                                        <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                        <label for="name">David Bowie</label>
-                                        Sera assigné dans la chambre : <input type="text" value="113"> 
-                                    </div>
-                                    <!-- Name input-->
-                                    <div class="form-floating mb-3">
-                                        <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                        <label for="name">Prince</label>
-                                        Sera assigné dans la chambre : <input type="text" value="758"> 
-                                    </div>
-                                                    <!-- Name input-->
-                                    <div class="form-floating mb-3">
-                                        <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                        <label for="name">Stevie Wonder</label>
-                                        Sera assigné dans la chambre : <input type="text" value="794"> 
-                                    </div>
+                                    
+                                    
+                                    
                                     
                                     <!-- Submit success message-->
                                     <!---->
