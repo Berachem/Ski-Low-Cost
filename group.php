@@ -27,7 +27,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
 }
 
 include('includes/header.inc.html');
-include('connexion.inc.php');
+include('php/connexion.inc.php');
 
 echo "code client -> ".$_SESSION['code'];
 ?>
@@ -73,20 +73,20 @@ echo "code client -> ".$_SESSION['code'];
                                             echo'
                                                 <select class="form-control" name="chambre'.$memberIndex.'">
                                                 <option >Sélectionner une chambre</option>';
-                                            
-            
+
+
                                                 $results=$conn->query("SELECT DISTINCT chambre.numchambre AS numc FROM chambre,occupe,reservations WHERE chambre.numchambre NOT IN (SELECT numchambre FROM occupe) OR chambre.numchambre = occupe.numchambre AND occupe.numr = reservations.numr AND CURRENT_DATE NOT BETWEEN reservations.date_debutr AND reservations.date_finr");
-            
-                                                                            
+
+
                                                 // Exécution de la requête SQL
                                                 while( $ligne = $results->fetch(PDO::FETCH_OBJ) ) {
                                                 echo '
                                                     <option value="'.$ligne->numc.'">Chambre '.$ligne->numc.'</option>
-            
+
                                                     ';
                                                 }
-                                                
-                                            
+
+
                                             echo'</select>';
                                             $memberIndex += 1;
 
@@ -100,7 +100,7 @@ echo "code client -> ".$_SESSION['code'];
 
                                             }
                                         }
-            
+
 
                                     if ($_SESSION['code'] == $result){
                                         echo'
