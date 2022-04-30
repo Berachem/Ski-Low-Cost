@@ -5,7 +5,7 @@ session_start();
 
 function getClientCode($id, $psw,$conn){
     $result = $conn->query("SELECT * FROM login");
-    
+
     while($ligne = $result->fetch()){
         if ($ligne['id']==$id && $ligne['psw'] == $psw){
             return $ligne['code_client'];
@@ -20,7 +20,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
     if ($_SESSION['id']=='admin' && $_SESSION['psw']=='admin'){
         header('Location: manager.php');
     }
-    
+
 }else{
     // si personne ne s'est connecté
     header('Location: connexion.php');
@@ -42,16 +42,20 @@ echo "code client -> ".$_SESSION['code'];
                             <p class="lead fw-normal text-muted mb-0">Répartissez les clients de votre groupe de voyage.
                                 <br> Assurez vous que ceux que vous mettrez dans la même chambre s'entendent bien :)</p>
                         </div>
+
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">
-                                <!-- * * * * * * * * * * * * * * *-->
-                                <!-- * * SB Forms Contact Form * *-->
-                                <!-- * * * * * * * * * * * * * * *-->
-                                <!-- This form is pre-integrated with SB Forms.-->
-                                <!-- To make this form functional, sign up at-->
-                                <!-- https://startbootstrap.com/solution/contact-forms-->
-                                <!-- to get an API token!-->
-                                <form id="contactForm" method="POST" action="php/affectchambre.php">
+
+
+                              <?php
+                              if (isset($_GET["GroupeCreated"]) && $_GET["GroupeCreated"]=='1'){
+                                  echo '<div class="alert alert-success" role="alert" style="width:70%;">
+                                  Groupe bien créé ! :)
+                                </div>';
+                              }
+                              echo '<br>';
+                              ?>
+                                <form id="contactForm" method="POST" action="book.php">
                                     <!-- Name input-->
                                     <?php
                                         $memberIndex = 0;
@@ -85,6 +89,7 @@ echo "code client -> ".$_SESSION['code'];
                                             
                                             echo'</select>';
                                             $memberIndex += 1;
+
                                             }else{
                                                 $chambre=$conn->query("SELECT numchambre FROM occupe WHERE occupe.codec = ".$ligne->codec);
                                                 if (empty($ligne2 = $chambre->fetch())){
@@ -92,7 +97,7 @@ echo "code client -> ".$_SESSION['code'];
                                                 }else{
                                                     echo '<p>'.$ligne2[0].'</p>';
                                                 }
-            
+
                                             }
                                         }
             
@@ -115,7 +120,7 @@ echo "code client -> ".$_SESSION['code'];
                                     <!-- Submit Button-->
                                     <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Envoyer</button></div>';
                                     }
-                                    
+
                                     ?>
                                 </form>
                             </div>

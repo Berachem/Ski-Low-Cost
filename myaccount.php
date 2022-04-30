@@ -35,11 +35,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                                 <div class="feature bg-info bg-gradient text-white rounded-3 mb-3"><i class="bi bi-door-open"></i></div>
                                 <h2 class="h5">Votre Chambre</h2>
                                 <p class="mb-0">
-                                    
+
                                 <?php
                                     $chambre=$conn->query("SELECT numchambre FROM occupe WHERE occupe.codec = ".$_SESSION["code"]);
                                     if (empty($ligne = $chambre->fetch())){
-                                        echo '<p>pas de chambre assigner</p>';
+                                        echo '<p>Vous n\'avez de chambre assignée...</p>';
                                     }else{
                                         echo '<p>'.$ligne[0].'</p>';
                                     }
@@ -59,18 +59,18 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                                 <?php
                                     $groupe=$conn->query("SELECT nomgroupe FROM groupe,appartient WHERE groupe.numg = appartient.numg and appartient.codec = ".$_SESSION['code']);
                                     if (empty($ligne = $groupe->fetch(PDO::FETCH_OBJ))){
-                                        echo 'Vous n\'avez pas de groupe';
+                                        echo 'Vous n\'avez pas de groupe...';
                                     }
                                     else{
                                         echo $ligne->nomgroupe;
                                     }
-                        
-                                    
-                                    
+
+
+
 
                                 ?>
-                                    
-                                
+
+
                                 </p>
                             </div>
                             <div class="col mb-5 mb-md-0 h-100">
@@ -82,13 +82,13 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
 
                                     $reservation=$conn->query("SELECT date_debutr,date_finr FROM reservations,appartient WHERE reservations.numg = appartient.numg and appartient.codec = ".$_SESSION['code']);
                                     if (empty($ligne = $reservation->fetch(PDO::FETCH_OBJ))){
-                                        echo 'pas de réservations';
+                                        echo 'Vous n\'avez pas de réservation...';
                                     }else{
                                         echo 'date début : '.$ligne->date_debutr;
                                         echo '<br>date fin : '.$ligne->date_finr;
                                     }
                                 ?>
-                                    
+
                                 </p>
                             </div>
                             <div class="col h-100">
@@ -103,13 +103,13 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                                     }
 
                                     ?>
-                                
+
 
 
 
                                 </p>
                             </div>
-                            
+
                         </div>
 
                     </div>
@@ -120,7 +120,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                 <br>
                 <div class="row gx-5">
                         <div class="col-lg-4 mb-5 mb-lg-0"><h2 class="fw-bolder mb-0">Voyager avec un groupe</h2></div>
-                        
+
                         <div class="col-lg-8">
                             <div class="row gx-5 row-cols-1 row-cols-md-2">
                             <?php
@@ -131,14 +131,14 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                                         }
                                         echo '<br>';
                                     ?>
-                            
+
 
                             </div>
-                            
-<?php 
+
+<?php
 function isAlreadyInAGroup($codec, $conn){
     $result = $conn->query("SELECT * FROM appartient");
-    
+
     while($ligne = $result->fetch()){
         if ($ligne["codec"]==$codec){
             return true;
@@ -148,14 +148,20 @@ function isAlreadyInAGroup($codec, $conn){
 }
 
 if (!isAlreadyInAGroup($_SESSION["code"],$conn)){
+  if (isset($_GET["GroupeLeaved"]) && $_GET["GroupeLeaved"]=='1'){
+      echo '<div class="alert alert-warning" role="alert" style="width:70%;">
+      Vous avez quitté le groupe :)
+    </div>';
+  }
+  echo '<br>';
 
     echo "
     <form id='contactForm' method='POST' action='php/affecterGroupe.php'>
-                            
+
                             <div class='form-floating mb-3'>
                                 <br>
                                 <select class='form-control' name='groupe'>";
-                                
+
                                         $results=$conn->query('SELECT DISTINCT nomgroupe, groupe_clients.numg AS numg FROM groupe,groupe_clients WHERE groupe.numg = groupe_clients.numg');
 
 
@@ -163,48 +169,64 @@ if (!isAlreadyInAGroup($_SESSION["code"],$conn)){
                                         while( $ligne = $results->fetch(PDO::FETCH_OBJ) ) {
                                         echo '<option value="'.$ligne->numg.'">Groupe '.$ligne->nomgroupe.'</option>';
                                         }
-                                    
+
                                         echo"
-                                </select> 
+                                </select>
                             </div>
-    
-                    
+
+
                             <!-- Submit Button-->
-                            <div class='d-grid'><button class='btn btn-info btn-lg' type='submit'>Envoyer</button></div>
+                            <div class='d-grid'><button class='btn btn-info btn-lg' type='submit'>Rejoindre</button></div>
                             </form>
-    
-    
+
+
     <br><div class='row gx-5 row-cols-1 row-cols-md-2'>
+      <h1> Ou bien, vous pouvez créer votre propre groupe ^^</h1>
             <div class='row'>
                 <form action='php/createGroup.php' method='POST'>
-                <label for='groupeName'>Nom de groupe</label>
-                    <input class='form-control' id='name' name='groupeName' type='text'  required/>
-                    <br>
-                    
-                    <button class='btn btn-primary btn-lg' type='submit'>Créer mon propre groupe</button>     
-            </form> 
+
+
+                        <label for='name'>Date de début du séjour</label>
+                         <input class='form-control' name='datedebut' type='date' required/>
+
+                         <br>
+                         <label for='name'>Date de fin du séjour</label>
+                         <input class='form-control' name='datefin' type='date' required/>
+
+                         <br>
+
+
+                          <label for='groupeName'>Nom de groupe</label>
+                            <input class='form-control' id='name' name='groupeName' type='text'  required/>
+                            <br>
+
+                    <button class='btn btn-primary btn-lg' type='submit'>Créer mon propre groupe</button>
+            </form>
             ";
 }else{
-    echo '<a href="group.php"> <button class="btn btn-secondary btn-lg">Voir mon groupe</button></a>';
+
+    echo '<a href="group.php"> <button class="btn btn-secondary btn-lg">Voir mon groupe</button></a>
+          <a href="php/quitterGroup.php"> <button class="btn btn-warning btn-lg">Quitter mon groupe</button></a>
+    ';
 }
-                               
-                        
-?>          
+
+
+?>
                                </div>
                             </div>
-                            
+
                         </div>
 
 
 
-                        
+
                     </div>
-                    
+
             </div>
         </section>
-        
 
-        
+
+
 
 
 <?php
