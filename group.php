@@ -54,12 +54,24 @@ echo "code client -> ".$_SESSION['code'];
                                 <form id="contactForm" method="POST" action="book.php">
                                     <!-- Name input-->
                                     <?php
+                                        $grp = $conn->query("SELECT code_chef FROM groupe,appartient WHERE appartient.numg = groupe.numg AND appartient.codec = ".$_SESSION['code']);
+                                        while ( $ligne = $grp->fetch(PDO::FETCH_OBJ) ) {
+                                            $result = $ligne->code_chef;
+                                        }
+
                                         $numgroupe = "SELECT numg FROM appartient WHERE codec = ".$_SESSION['code'];
                                         $membres = $conn->query("SELECT nomc,prenomc FROM clients,appartient WHERE appartient.codec = clients.codec and appartient.numg IN (".$numgroupe.")");
                                         while( $ligne = $membres->fetch(PDO::FETCH_OBJ) ) {
                                             echo '
                                             <p>'.$ligne->nomc.' '.$ligne->prenomc.'</p>
-                                            Sera assigné dans la chambre : <input type="text" value="245"> ';
+                                            ';
+                                            if ($_SESSION['code'] == $result){
+                                            
+                                            echo 'Sera assigné dans la chambre : <input type="text" value="245"> ';
+                                            }
+                                            else{
+                                                echo 'omg ca fonctionne';
+                                            }
                                         }
                                     ?>
                                     
