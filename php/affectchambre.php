@@ -12,6 +12,7 @@ while( $ligne = $membres->fetch(PDO::FETCH_OBJ) ){
     $verif = $conn->query("SELECT * FROM occupe WHERE codec = ".$ligne->codec);
     if (!empty($ligne2 = $verif->fetch(PDO::FETCH_OBJ))){
         $requete=$conn->exec("UPDATE occupe SET numchambre = '".$_POST['chambre'.$index]."' WHERE codec =".$ligne->codec); 
+        $requete=$conn->exec("UPDATE occupe SET numr = 'R".$_SESSION['code']."' WHERE codec =".$ligne->codec);
         
     }else{
         

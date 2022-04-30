@@ -55,7 +55,7 @@ echo "code client -> ".$_SESSION['code'];
                               }
                               echo '<br>';
                               ?>
-                                <form id="contactForm" method="POST" action="book.php">
+                                <form id="contactForm" method="POST" action="php/affectchambre.php">
                                     <!-- Name input-->
                                     <?php
                                         $memberIndex = 0;

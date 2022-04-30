@@ -86,7 +86,7 @@ include('php/connexion.inc.php');
                                     <br>
                                     <h1 class="fw-bolder">Authentification</h1>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" name="id" type="text" required/>
+                                        <input class="form-control" name="id" type="number" required/>
                                         <label for="name">ID de connexion</label>
                                     </div>
                                     <div class="form-floating mb-3">
