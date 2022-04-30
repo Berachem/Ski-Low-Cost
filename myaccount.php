@@ -38,14 +38,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                                     
                                 <?php
                                     $chambre=$conn->query("SELECT numchambre FROM occupe WHERE occupe.codec = ".$_SESSION["code"]);
-                                    while( $ligne = $chambre->fetch() ) {
-                                        if (isset($chambre)){
-                                            echo $ligne[0];
-                                        }
-                                        else{
-                                            echo 'vous n\'avez pas de chambre';
-                                        }
-
+                                    if (empty($ligne = $chambre->fetch())){
+                                        echo '<p>pas de chambre assigner</p>';
+                                    }else{
+                                        echo '<p>'.$ligne2[0].'</p>';
                                     }
 
                                 ?>
@@ -62,14 +58,13 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                                 <p class="mb-0">
                                 <?php
                                     $groupe=$conn->query("SELECT nomgroupe FROM groupe,appartient WHERE groupe.numg = appartient.numg and appartient.codec = ".$_SESSION['code']);
-                                    while($ligne = $groupe->fetch(PDO::FETCH_OBJ)){
-                                        if (isset($groupe)){
-                                            echo $ligne->nomgroupe;
-                                        }
-                                        else{
-                                            echo 'Vous n\'avez pas de groupe';
-                                        }
+                                    if (empty($ligne = $groupe->fetch(PDO::FETCH_OBJ))){
+                                        echo 'Vous n\'avez pas de groupe';
                                     }
+                                    else{
+                                        echo $ligne->nomgroupe;
+                                    }
+                        
                                     
                                     
 
@@ -86,14 +81,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                                 <?php
 
                                     $reservation=$conn->query("SELECT date_debutr,date_finr FROM reservations,appartient WHERE reservations.numg = appartient.numg and appartient.codec = ".$_SESSION['code']);
-                                    while($ligne = $reservation->fetch(PDO::FETCH_OBJ)){
-                                        if (isset($reservation)){
-                                            echo 'date début : '.$ligne->date_debutr;
-                                            echo '<br>date fin : '.$ligne->date_finr;
-                                        }
-                                        else{
-                                            echo 'Vous n\'avez pas de réservation';
-                                        }
+                                    if (empty($ligne = $reservation->fetch(PDO::FETCH_OBJ))){
+                                        echo 'pas de réservations';
+                                    }else{
+                                        echo 'date début : '.$ligne->date_debutr;
+                                        echo '<br>date fin : '.$ligne->date_finr;
                                     }
                                 ?>
                                     

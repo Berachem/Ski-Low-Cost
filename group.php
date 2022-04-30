@@ -68,14 +68,10 @@ echo "code client -> ".$_SESSION['code'];
                                             echo 'Sera assigné dans la chambre : <input type="text" value="245"> ';
                                             }else{
                                                 $chambre=$conn->query("SELECT numchambre FROM occupe WHERE occupe.codec = ".$ligne->codec);
-                                                while( $ligne2 = $chambre->fetch() ) {
-                                                    if (isset($chambre)){
-                                                        echo '<p>'.$ligne2[0].'</p>';
-                                                    }
-                                                    else{
-                                                        echo '<p>pas de chambre assigner</p>';
-                                                    }
-            
+                                                if (empty($ligne2 = $chambre->fetch())){
+                                                    echo '<p>pas de chambre assigner</p>';
+                                                }else{
+                                                    echo '<p>'.$ligne2[0].'</p>';
                                                 }
             
                                             }
