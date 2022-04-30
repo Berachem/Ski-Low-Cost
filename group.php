@@ -51,9 +51,11 @@ echo "code client -> ".$_SESSION['code'];
                                 <!-- To make this form functional, sign up at-->
                                 <!-- https://startbootstrap.com/solution/contact-forms-->
                                 <!-- to get an API token!-->
-                                <form id="contactForm" method="POST" action="book.php">
+                                <form id="contactForm" method="POST" action="php/affectchambre.php">
                                     <!-- Name input-->
                                     <?php
+                                        $memberIndex = 0;
+
                                         $grp = $conn->query("SELECT code_chef FROM groupe,appartient WHERE appartient.numg = groupe.numg AND appartient.codec = ".$_SESSION['code']);
                                         while ( $ligne = $grp->fetch(PDO::FETCH_OBJ) ) {
                                             $result = $ligne->code_chef;
@@ -64,8 +66,25 @@ echo "code client -> ".$_SESSION['code'];
                                         while( $ligne = $membres->fetch(PDO::FETCH_OBJ) ) {
                                             echo '<p>'.$ligne->nomc.' '.$ligne->prenomc.'</p>';
                                             if ($_SESSION['code'] == $result){
+                                            echo'
+                                                <select class="form-control" name="chambre'.$memberIndex.'">
+                                                <option >Sélectionner une chambre</option>';
                                             
-                                            echo 'Sera assigné dans la chambre : <input type="text" value="245"> ';
+            
+                                                $results=$conn->query("SELECT DISTINCT chambre.numchambre AS numc FROM chambre,occupe,reservations WHERE chambre.numchambre NOT IN (SELECT numchambre FROM occupe) OR chambre.numchambre = occupe.numchambre AND occupe.numr = reservations.numr AND CURRENT_DATE NOT BETWEEN reservations.date_debutr AND reservations.date_finr");
+            
+                                                                            
+                                                // Exécution de la requête SQL
+                                                while( $ligne = $results->fetch(PDO::FETCH_OBJ) ) {
+                                                echo '
+                                                    <option value="'.$ligne->numc.'">Chambre '.$ligne->numc.'</option>
+            
+                                                    ';
+                                                }
+                                                
+                                            
+                                            echo'</select>';
+                                            $memberIndex += 1;
                                             }else{
                                                 $chambre=$conn->query("SELECT numchambre FROM occupe WHERE occupe.codec = ".$ligne->codec);
                                                 if (empty($ligne2 = $chambre->fetch())){
@@ -76,6 +95,7 @@ echo "code client -> ".$_SESSION['code'];
             
                                             }
                                         }
+            
 
                                     if ($_SESSION['code'] == $result){
                                         echo'

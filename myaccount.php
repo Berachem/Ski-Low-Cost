@@ -41,7 +41,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                                     if (empty($ligne = $chambre->fetch())){
                                         echo '<p>pas de chambre assigner</p>';
                                     }else{
-                                        echo '<p>'.$ligne2[0].'</p>';
+                                        echo '<p>'.$ligne[0].'</p>';
                                     }
 
                                 ?>
