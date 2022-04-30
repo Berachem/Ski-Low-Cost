@@ -60,30 +60,29 @@ echo "code client -> ".$_SESSION['code'];
                                         }
 
                                         $numgroupe = "SELECT numg FROM appartient WHERE codec = ".$_SESSION['code'];
-                                        $membres = $conn->query("SELECT nomc,prenomc FROM clients,appartient WHERE appartient.codec = clients.codec and appartient.numg IN (".$numgroupe.")");
+                                        $membres = $conn->query("SELECT nomc,prenomc,clients.codec FROM clients,appartient WHERE appartient.codec = clients.codec and appartient.numg IN (".$numgroupe.")");
                                         while( $ligne = $membres->fetch(PDO::FETCH_OBJ) ) {
-                                            echo '
-                                            <p>'.$ligne->nomc.' '.$ligne->prenomc.'</p>
-                                            ';
+                                            echo '<p>'.$ligne->nomc.' '.$ligne->prenomc.'</p>';
                                             if ($_SESSION['code'] == $result){
                                             
                                             echo 'Sera assigné dans la chambre : <input type="text" value="245"> ';
-                                            }
-                                            else{
-                                                echo 'omg ca fonctionne';
+                                            }else{
+                                                $chambre=$conn->query("SELECT numchambre FROM occupe WHERE occupe.codec = ".$ligne->codec);
+                                                while( $ligne2 = $chambre->fetch() ) {
+                                                    if (isset($chambre)){
+                                                        echo '<p>'.$ligne2[0].'</p>';
+                                                    }
+                                                    else{
+                                                        echo '<p>pas de chambre assigner</p>';
+                                                    }
+            
+                                                }
+            
                                             }
                                         }
-                                    ?>
-                                    
-                                                                        <!-- Name input-->
-                                    
-                                    
-                                    
-                                    
-                                    <!-- Submit success message-->
-                                    <!---->
-                                    <!-- This is what your users will see when the form-->
-                                    <!-- has successfully submitted-->
+
+                                    if ($_SESSION['code'] == $result){
+                                        echo'
                                     <div class="d-none" id="submitSuccessMessage">
                                         <div class="text-center mb-3">
                                             <div class="fw-bolder">Form submission successful!</div>
@@ -98,7 +97,10 @@ echo "code client -> ".$_SESSION['code'];
                                     <!-- an error submitting the form-->
                                     <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                                     <!-- Submit Button-->
-                                    <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Envoyer</button></div>
+                                    <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Envoyer</button></div>';
+                                    }
+                                    
+                                    ?>
                                 </form>
                             </div>
                         </div>
