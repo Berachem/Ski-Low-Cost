@@ -84,7 +84,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
                                     <p class="mb-0">
                                     <?php
 
-                                        $cpt=$conn->query("SELECT COUNT(*) AS total FROM clients");                         
+                                        $cpt=$conn->query("SELECT COUNT(*) AS total FROM appartient,reservations WHERE reservations.numg = appartient.numg AND CURRENT_DATE BETWEEN reservations.date_debutr AND reservations.date_finr");                         
                                         // Exécution de la requête SQL
                                         while( $ligne = $cpt->fetch(PDO::FETCH_OBJ) ) {
                                             echo $ligne->total;
