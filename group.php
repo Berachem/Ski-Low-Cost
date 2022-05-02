@@ -97,7 +97,7 @@ echo "code client -> ".$_SESSION['code'];
                                                     pas de chambre assignée pour le moment...
                                                   </div></p>';
                                                 }else{
-                                                    echo '<p>'.$ligne2[0].'</p>';
+                                                    echo '<p><div class="alert alert-primary" role="alert" style="width:70%;">Occupera la chambre '.$ligne2[0].'...</div></p>';
                                                 }
 
                                             }
