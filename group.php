@@ -29,7 +29,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
 include('includes/header.inc.html');
 include('php/connexionPAUL.inc.php');
 
-echo "code client -> ".$_SESSION['code'];
+echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+         Vous êtes le client : '.$_SESSION["code"].'
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>';
 ?>
             <!-- Page content-->
             <section class="py-5">
