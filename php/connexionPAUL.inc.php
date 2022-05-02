@@ -4,7 +4,7 @@
  * création d'objet PDO de la connexion qui sera représenté par la variable $cnx
  */
 $user =  'paul.lucas';
-$pass =  '';
+$pass =  'toto';
 
 
 

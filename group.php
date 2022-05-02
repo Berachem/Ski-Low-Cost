@@ -27,7 +27,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
 }
 
 include('includes/header.inc.html');
-include('php/connexion.inc.php');
+include('php/connexionPAUL.inc.php');
 
 echo "code client -> ".$_SESSION['code'];
 ?>
