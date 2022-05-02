@@ -13,7 +13,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
     if ($_SESSION['id']=='admin' && $_SESSION['psw']=='admin'){
         header('Location: manager.php');
     }else{
-        include('php/connexion.inc.php');
+        include('php/connexionPAUL.inc.php');
         // sinon si c'est un client...
         echo 'Salut votre login est : '.$_SESSION['id'].' et le mot de passe = '.$_SESSION['psw'];
         echo '<br> Vous êtes le client : '.$_SESSION["code"];
