@@ -93,7 +93,9 @@ echo "code client -> ".$_SESSION['code'];
                                             }else{
                                                 $chambre=$conn->query("SELECT numchambre FROM occupe WHERE occupe.codec = ".$ligne->codec);
                                                 if (empty($ligne2 = $chambre->fetch())){
-                                                    echo '<p><i>pas de chambre assignée</i></p>';
+                                                    echo '<p><div class="alert alert-warning" role="alert" style="width:70%;">
+                                                    pas de chambre assignée pour le moment...
+                                                  </div></p>';
                                                 }else{
                                                     echo '<p>'.$ligne2[0].'</p>';
                                                 }
