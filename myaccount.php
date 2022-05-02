@@ -15,8 +15,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['psw'])){
     }else{
         include('php/connexionPAUL.inc.php');
         // sinon si c'est un client...
-        echo 'Salut votre login est : '.$_SESSION['id'].' et le mot de passe = '.$_SESSION['psw'];
-        echo '<br> Vous êtes le client : '.$_SESSION["code"];
+        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Salut,</strong> votre login est : '.$_SESSION['id'].' et le mot de passe = '.$_SESSION['psw'].'<br> Vous êtes le client : '.$_SESSION["code"].'
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>';
     }
 
 }else{// pas encore connecté
