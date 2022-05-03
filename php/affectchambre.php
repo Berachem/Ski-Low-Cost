@@ -3,10 +3,11 @@
 include('connexion.inc.php');
 session_start();
 
+//affecte les chambres aux personnes du groupe
 $numgroupe = "SELECT numg FROM appartient WHERE codec = ".$_SESSION['code'];
 $membres = $conn->query("SELECT nomc,prenomc,clients.codec FROM clients,appartient WHERE appartient.codec = clients.codec and appartient.numg IN (".$numgroupe.") ORDER BY nomc,prenomc");
 
-//affecte les chambres aux personnes du groupe
+
 $index = 0;
 while( $ligne = $membres->fetch(PDO::FETCH_OBJ) ){
     $verif = $conn->query("SELECT * FROM occupe WHERE codec = ".$ligne->codec);
@@ -21,11 +22,11 @@ while( $ligne = $membres->fetch(PDO::FETCH_OBJ) ){
     $index += 1;
 }
 
-
+//calcule le prix total du groupe
 $gens = $conn->query("SELECT formulec,date_de_naissancec AS d FROM clients,appartient WHERE clients.codec = appartient.codec AND appartient.numg = 'G".$_SESSION['code']."'");
 $total = 0;
 
-//calcule le prix total du groupe
+
 while( $ligne = $gens->fetch(PDO::FETCH_OBJ) ){
     $compt = $conn->query("SELECT prix FROM formule WHERE formulec = '".$ligne->formulec."'");
 
@@ -51,7 +52,7 @@ if (empty($test = $existe->fetch(PDO::FETCH_OBJ))){
     $requete=$conn->exec("UPDATE facture_groupe SET montantfacture = ".$total." WHERE numg ='G".$_SESSION['code']."'");
 }
 
-header('Location: ../group.php');
+header('Location: ../group.php?roomsAffected=1');
 
 
 ?>

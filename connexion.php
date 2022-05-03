@@ -32,13 +32,13 @@ include('includes/header.inc.html')
                         <div class="row gx-5 justify-content-center">
                                     <?php
                                         if (isset($_GET["error"]) && $_GET["error"]=='1'){
-                                            echo '<div class="alert alert-danger" role="alert" style="width:70%;">
+                                            echo '<div class="alert alert-danger" role="alert" style="width:100%;">
                                             Login incorrect :/ (Si vous n avez pas de compte, créez en ...)
                                           </div>';
                                         }
                                         if (isset($_GET["newAccount"]) && $_GET["newAccount"]=='1'){
-                                            echo '<div class="alert alert-success" role="alert" style="width:70%;">
-                                            Compte créé avec succès ! :)
+                                            echo '<div class="alert alert-success" role="alert" style="width:100%;">
+                                            Compte créé avec succès ! :) A présent, vous avez juste à vous connecter...
                                           </div>';
                                         }
 
