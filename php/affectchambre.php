@@ -46,7 +46,7 @@ $existe = $conn->query("SELECT * FROM facture_groupe WHERE numg = 'G".$_SESSION[
 
 
 if (empty($test = $existe->fetch(PDO::FETCH_OBJ))){
-    $requete=$conn->exec("INSERT INTO facture_groupe VALUES ('FactGroup".$_SESSION['code']."','".$total."','G".$_SESSION['code']."')");
+    $requete=$conn->exec("INSERT INTO facture_groupe VALUES ('FactGroup".$_SESSION['code']."',".$total.",'G".$_SESSION['code']."')");
 }else{
     $requete=$conn->exec("UPDATE facture_groupe SET montantfacture = ".$total." WHERE numg ='G".$_SESSION['code']."'");
 }
