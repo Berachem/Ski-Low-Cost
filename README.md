@@ -28,5 +28,14 @@ Publique : https://perso-etudiant.u-pem.fr/~berachem.markria/Ski/index.php
 # Accueil
 ![image](https://user-images.githubusercontent.com/61350744/167177114-929743a6-3018-4ae1-b4eb-b158e7d36001.png)
 
+# Exemple de logins
+
+Essayez de vous connecter à ces comptes pour avoir une petite démo <i> ou bien créez votre propre compte </i> :)
+
+1300 ; 1300<br>
+1425 ; 1425<br>
+1550 ; 1550
+
+
 
 
