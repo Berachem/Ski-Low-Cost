@@ -1,6 +1,6 @@
 # ⛷️ Ski-Low-Cost : Site Web pour un hôtel d'une station de Ski
 
-## Auteurs
+## 💁‍♂️ Auteurs
 
 - [@Berachem MARKRIA](https://www.github.com/Berachem)
 - [@Paul LUCAS](https://www.github.com/)
