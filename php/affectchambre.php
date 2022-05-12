@@ -3,6 +3,7 @@
 include('connexion.inc.php');
 session_start();
 
+$conn->exec("BEGIN;");
 //affecte les chambres aux personnes du groupe
 $numgroupe = "SELECT numg FROM appartient WHERE codec = ".$_SESSION['code'];
 $membres = $conn->query("SELECT nomc,prenomc,clients.codec FROM clients,appartient WHERE appartient.codec = clients.codec and appartient.numg IN (".$numgroupe.") ORDER BY nomc,prenomc");
@@ -51,6 +52,7 @@ if (empty($test = $existe->fetch(PDO::FETCH_OBJ))){
 }else{
     $requete=$conn->exec("UPDATE facture_groupe SET montantfacture = ".$total." WHERE numg ='G".$_SESSION['code']."'");
 }
+$conn->exec("COMMIT;");
 
 header('Location: ../group.php?roomsAffected=1');
 
