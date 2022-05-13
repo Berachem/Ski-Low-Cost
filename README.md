@@ -4,6 +4,9 @@
 
 - [@Berachem MARKRIA](https://www.github.com/Berachem)
 - [@Paul LUCAS](https://www.github.com/)
+<br>
+
+[Rapport📄](https://github.com/Berachem/Ski-Low-Cost/files/8690751/Rapport_BerachemMARKRIA_PaulLUCAS.pdf)
 
 
 # 🪄 Introduction
