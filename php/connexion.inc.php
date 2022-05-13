@@ -3,8 +3,8 @@
 /*
  * création d'objet PDO de la connexion qui sera représenté par la variable $cnx
  */
-$user =  'berachem.markria';
-$pass =  'Bouzened93';
+$user =  'TU NE L AURAS PAS ;) ';
+$pass =  'CA AUSSI';
 
 
 
