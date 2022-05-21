@@ -29,7 +29,8 @@ Publique : https://perso-etudiant.u-pem.fr/~berachem.markria/Ski/index.php
 ![image](https://user-images.githubusercontent.com/61350744/167176506-ee70e138-a15c-4a6c-8ebd-cdbfc394f029.png)
 
 # 🏠 Accueil
-![image](https://user-images.githubusercontent.com/61350744/167177114-929743a6-3018-4ae1-b4eb-b158e7d36001.png)
+
+https://user-images.githubusercontent.com/61350744/169663143-b7554149-0879-4e1a-ae83-6ea4d0b7e8db.mp4
 
 # 🔐 Exemple de logins
 
