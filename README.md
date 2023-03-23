@@ -32,7 +32,7 @@ Publique : https://perso-etudiant.u-pem.fr/~berachem.markria/Ski/index.php
 
 https://user-images.githubusercontent.com/61350744/169663143-b7554149-0879-4e1a-ae83-6ea4d0b7e8db.mp4
 
-# 🔐 Exemple de logins
+# 🔐 Exemple de logins et passwords
 
 Essayez de vous connecter à ces comptes pour avoir une petite démo <i> ou bien créez votre propre compte </i> :)
 
