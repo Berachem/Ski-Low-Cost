@@ -1,4 +1,4 @@
-# ⛷️ Ski-Low-Cost : Site Web pour un hôtel d'une station de Ski
+# ⛷️ Ski-Low-Cost : Site Web pour un hôtel d'une station de Ski pour pas cher!
 
 ## 💁‍♂️ Auteurs
 
